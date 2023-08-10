@@ -23,9 +23,11 @@ export const Proposal = defineDocumentType(() => ({
     },
     description: {
       type: "string",
+      required: true,
     },
-    image:{
+    date:{
       type: "string",
+      required: true,
     },
   },
   computedFields,
