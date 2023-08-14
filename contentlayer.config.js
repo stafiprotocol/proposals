@@ -29,6 +29,10 @@ export const Proposal = defineDocumentType(() => ({
       type: "string",
       required: true,
     },
+    status:{
+      type: "number",
+      required: true,
+    }
   },
   computedFields,
 }))
