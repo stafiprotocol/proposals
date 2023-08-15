@@ -25,7 +25,7 @@ export const ProposalCard = (params: ProposalCard) => {
           </div>
           <Link href={params.url}>
             <div className='relative break-words leading-7'>
-              <h3 className='inline text-3xl font-bold'>
+              <h3 className='inline text-3xl font-title'>
                 {params.title}
               </h3>
             </div>

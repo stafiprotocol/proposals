@@ -16,3 +16,20 @@
   }
 }
 
+@font-face {
+  font-family: 'AdobeTextPro-Regular';
+  font-weight: 400;
+  font-display: block;
+  font-style: normal;
+  font-named-instance: 'Regular';
+  src: url('./fonts/AdobeTextPro-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter var';
+  font-weight: 100 900;
+  font-display: block;
+  font-style: italic;
+  font-named-instance: 'Italic';
+  src: url('./fonts/Inter-roman-latin.var.woff2') format('woff2');
+}
