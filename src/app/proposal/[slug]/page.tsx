@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation"
 import { allProposals } from "contentlayer/generated"
-import { MDXProvider } from "@/components/mdxcomponents"
 import { getMDXComponent } from 'next-contentlayer/hooks'
 import Link from "next/link"
 import type { MDXComponents } from 'mdx/types'
