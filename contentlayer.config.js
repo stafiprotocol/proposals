@@ -14,7 +14,7 @@ const computedFields = {
 
 export const Proposal = defineDocumentType(() => ({
   name: "Proposal",
-  filePathPattern: `proposal/**/*.mdx`,
+  filePathPattern: `**/*.mdx`,
   contentType: "mdx",
   fields: {
     title: {
@@ -32,12 +32,30 @@ export const Proposal = defineDocumentType(() => ({
     status:{
       type: "number",
       required: true,
+    },
+    ipfshash:{
+      type: "string",
+      required: false,
+    },
+    snapshotlink:{
+      type: "string",
+      required: false,
+    },
+    author:{
+      type: "string",
+      required: false,
     }
+    
   },
-  computedFields,
+  computedFields: {
+    url: {
+      type: 'string',
+      resolve: (doc) => `/proposal/${doc._raw.flattenedPath}`,
+    },
+  },
 }))
 
 export default makeSource({
-  contentDirPath: "./content",
+  contentDirPath: 'proposal',
   documentTypes: [Proposal],
 })

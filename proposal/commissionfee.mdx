@@ -1,0 +1,85 @@
+---
+title: Commission Fee Adjustment Proposal
+description: StaFi is committed to continuously improving our products to ensure the best possible user experience. Given the competitive market for Liquid Staking Derivatives (LSD), we have decided to adjust our strategy in order to further expand our reach. After conducting a detailed comparison between StaFi and other LSD protocols, we are proposing to update our commission fee structure for our Staking Derivatives.
+date: 2023-03-01
+status: 1
+ipfshash:
+snapshotlink:
+---
+
+StaFi is committed to continuously improving our products to ensure the best possible user experience. Given the competitive market for Liquid Staking Derivatives (LSD), we have decided to adjust our strategy in order to further expand our reach. After conducting a detailed comparison between StaFi and other LSD protocols, we are proposing to update our commission fee structure for our Staking Derivatives.
+
+# Abstract
+
+We propose adjusting the commission fee to 10%. Please note that StaFi only charges an overall commission fee of 10% from the staking reward in the pool. Out of the 10% commission fee, 5% will be allocated to the StaFi DAO treasury and 5% will be allocated to validators.
+
+By implementing this approach, stakers and validators will receive greater benefits from StaFi’s staking services, but it may result in a decrease in income for the StaFi DAO treasury to a certain degree.
+
+#Motivation
+
+As the Ethereum Shanghai Upgrade approaches, it is expected to not only enable ETH withdrawals but also accelerate the growth of the Liquid Staking Derivatives (LSD) industry. This will bring more confidence to users and may attract more participation from large and institutional investors. Additionally, the current Ethereum network’s Staking Ratio stands at 13.79%, with over 15 million ETHs deposited. Considering the size of the Ethereum network, this is a minuscule fraction of the total supply.
+
+To benefit from this wave of stakers that the Ethereum upgrade will bring and make StaFi stand out from its competitors to further capture a larger portion of the market, we will need to solve two vital problems: the lack of liquidity for rETH and the rETH Depeg problem. These two problems are strongly correlated, as rETH liquidity is fundamental to maintaining its Peg as well as perpetuating DeFi use cases. The ETH Peg issue could be solved through arbitraging liquidity pools making rETH suitable to be used as the base for DeFi Applications, such as Leveraged Staking and Lending/Borrowing Protocols.
+
+The StaFi team is actively exploring various solutions to tackle the issue of rETH liquidity. Our approach includes incentivizing liquidity pools and improving our staking products. Regarding liquidity incentives, we are presently engaging with multiple decentralized exchanges (DEXs), such as Balancer and Camelot, to include rETH incentives in their pools. We are also connecting with lending protocols like Radiant and Demex to establish rETH Defi use cases. Additionally, in terms of product improvement, we recently launched our new rToken App, which significantly enhances the user experience and simplifies staking with LSDs. As a result, we are now focusing on improving our user commission fees as another aspect of product enhancement.
+
+# Specifications
+
+## The need to reduce Commission Fees
+
+Given the highly competitive market for Liquid Staking Derivatives, StaFi is currently exploring all possible avenues to attract more users and achieve rapid growth. A potential strategy is to reduce user commission fees, as this has proven to be an effective way of incentivizing users to stake. Lower fees may also improve rETH APY and help maintain the peg of ETH/rETH by increasing the pool’s depth and liquidity, thereby contributing to the overall growth of the StaFi ecosystem.
+
+## Commission Fee Structure: 10% overall Commission Fee with 5% commissions paid to validators
+
+The StaFi Foundation is committed to prioritizing growth above all else. In order for StaFi to be a mutually beneficial ecosystem, it is crucial to incentivize stakers to participate in the project and contribute to its growth.
+
+There are several commission fee structures available for selection. One of them would be to follow the majority of projects and charge a total of 10% user commission fees. The commission rate received by the validator will change based on the amount of ETH they stake. All validators will have a base commission rate, which increases as they stake more. This encourages validators to stake and run nodes. Additionally, our minimum threshold is only 4 ETH to run a node, which is relatively low compared to all other projects on the market.
+
+Another option is for the Foundation to collect 10% of all profits in the pool, with 5% going to the validator and 5% to the StaFi Treasury. This option aligns with the commission fee structure of the majority of decentralized LSD projects and may be more attractive to users due to its lower fee. However, the earnings of the validator and the StaFi Treasury will also decrease to a certain extent with the reduction in user fees. Nonetheless, we believe that as long as more new users are added, the total earnings will definitely be higher.
+
+After conducting a comprehensive comparison of other LSD projects in the market and considering StaFi’s current strategic development needs and technical human resources, the Foundation has decided to implement the second option of charging a 10% overall commission fee. This decision was made to attract more users to stake in StaFi.
+
+The Foundation may make further adjustments to the commission fee structure based on development needs and community feedback in the future.
+
+## Comparison between StaFi and other LSD projects
+
+
+## Comparison of old and new Commission Fee Structures
+
+Before:
+
+Users are charged a 19% staking reward commission.
+
+Validators get 10%*(1–10%) of overall staking rewards and are charged a 10% staking reward commission of their own staking capital part.
+
+Example: After earning a 1 ETH reward, StaFi takes a 10% cut, and the validator takes 10% of the remaining fees. The distribution of the remaining 81% ETH reward is based on the ratio of the validator’s capital to the user’s capital.
+
+After:
+
+Overall, a 10% commission is charged on staking rewards, with 5% allocated to validators and 5% to the StaFi DAO Treasury.
+
+Example: After earning a 1 ETH reward, StaFi takes a 10% cut, allocating 5% to validators and 5% to the StaFi DAO Treasury. The distribution of the remaining 90% ETH reward is based on the ratio of the validator’s capital to the user’s capital.
+
+## Comparison of old and new commission fee structures for Validators
+
+Example:
+
+Alice is a solo validator for StaFi, with a staked amount of 4 ETH. When the StaFi pool received a 1 ETH reward, the pool’s total staked amount was 32 ETH.
+
+Before:
+- Rewards: 1*9% + 1*81% * 4/32 = 0.19125 ETH
+- Final Rewards: 0.19125 * (1–10%) = 0.172125 ETH
+
+After:
+- Rewards: 1*5% + 1*90%*4/32=0.1625 ETH
+- Final Rewards: 0.1625 * (1–5%)=0.154375 ETH
+
+## StaFi DAO Treasury Commissions
+- Before: Gets 10% from the Staking Pool
+- After: Gets 5% from the Staking Pool
+
+## Conclusion
+
+The team is currently focused on making improvements to the platform, and once approved, the proposed changes to the commission fee calculation mechanism will be implemented in one week following this proposal. The new mechanism will come into effect as soon as it is developed. There will be no changes to the rules for calculating staked tokens.
+
+Your feedback and suggestions regarding this proposal are highly valued, and we encourage you to leave a comment below if you have any ideas for changes or additions that could benefit the community.

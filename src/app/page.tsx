@@ -7,14 +7,14 @@ import { compareDesc, format, parseISO } from "date-fns";
 
 export default function Home() {
 
-  const proposals =allProposals.sort((a, b) =>
+  const proposals = allProposals.sort((a, b) =>
     compareDesc(new Date(a.date), new Date(b.date))
   );
 
   return (
-    <main className='bg-[#E9EAEE]'>
+    <main className='bg-[#E9EAEE] flex flex-col min-h-screen'>
       <Header/>
-      <div className='px-16 pt-32 pb-16'>
+      <div className='px-16 pt-32 pb-16 flex-grow'>
         <div className='space-y-4'>
           {proposals.map((proposal,idx) => (
             <ProposalCard 
@@ -22,12 +22,12 @@ export default function Home() {
               title={proposal.title} 
               description={proposal.description} 
               status={proposal.status}
-              date={proposal.date}/>
+              date={proposal.date}
+              url={proposal.url}/>
           ))}
         </div>
       </div>
       <Footer/>
-      
     </main>
   )
 }

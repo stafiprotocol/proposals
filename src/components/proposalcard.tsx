@@ -11,6 +11,7 @@ interface ProposalCard {
     status: number;
     ipfshash: string;
     snapshotlink: string;
+    url: string;
 }
 
 export const ProposalCard = (params: ProposalCard) => {
@@ -22,14 +23,16 @@ export const ProposalCard = (params: ProposalCard) => {
             <div className='grow'>
             </div>
           </div>
-          <div className='relative break-words leading-7'>
-            <h3 className='inline text-3xl font-bold'>
-              {params.title}
-            </h3>
-          </div>
-          <p className='mt-3 line-clamp-2 break-words text-lg text-[#8A939C] leading-relaxed'>
-            {params.description}
-          </p>
+          <Link href={params.url}>
+            <div className='relative break-words leading-7'>
+              <h3 className='inline text-3xl font-bold'>
+                {params.title}
+              </h3>
+            </div>
+            <p className='mt-3 line-clamp-2 break-words text-lg text-[#8A939C] leading-relaxed'>
+              {params.description}
+            </p>
+          </Link>
           <div className='grid grid-cols-2 gap-4 mt-4'>
             { params.ipfshash && <Link href=''>
               <div className='flex items-center space-x-4 bg-[#E9EAEE]/30 p-2 rounded-md'>
