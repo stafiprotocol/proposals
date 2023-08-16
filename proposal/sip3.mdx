@@ -1,0 +1,241 @@
+---
+title: '[SIP-3]A New Implementation of rBNB using EVM LSD Architecture'
+description: As the rToken solution extends across numerous ecosystems - including Layer1s, sidechains, Cosmos appchains, and beyond - the tokenomics of StaFi are confronted with challenges that need to support this expansion. These challenges consist of balancing the value of rTokens with chain security, incentivizing validators in StaFi appchains, and establishing a robust on-chain voting system for governance. The issues at hand largely center around the complex nature of the intertwined tokenomics, which include FIS tokenomics, rTokenomics, and appchain tokenomics.
+date: 2023-03-01
+status: 2
+ipfshash:
+snapshotlink:
+---
+
+# Abstract
+
+In SIP-1 2, we discussed the benefits of the EVM LSD universal architecture. In SIP-2, we discussed the decoupling of rTokens.This proposal suggests migrating rBNB to the new architecture and decoupling it . After the migration is completed, both the usability and security of rBNB will be improved.
+
+# Motivation
+
+rBNB is an important part of the rToken, issued on the StaFi Chain. However, there are some usability issues. Firstly, users need to have two wallets and sign multiple transactions to mint rBNB. Secondly, if users want to participate in DEX trading on Binance Smart Chain (BSC), they need to bridge rBNB from the StaFi Chain to BSC. Finally, burning rBNB requires doing it on the StaFi Chain, which means bridging rBNB from BSC back to the StaFi Chain.
+
+Switching rBNB to the EVM LSD architecture can solve the usability issues mentioned above. Additionally, we have made some security updates, including introducing the Native Staking contract interface for BSC, multisig and simplifying relay services, among others.
+
+# Specification
+
+## Overview
+
+There are mainly three components:
+
+- Staking contracts on BSC: A new set of contracts has been designed to implement liquid staking on the BSC.
+- rBNB relay: A newly designed and simplified service is used to trigger Era updates in the contract for delegation and undelegation operations. Additionally, it synchronizes unrewarded data from the BSC chain that has not yet been synced to the contract to ensure the accuracy of rBNB exchange rates.
+- System staking contract on BSC: A system contract in charge of handling staking requests on BSC.
+
+## Contract
+
+This new set of contracts has been specifically designed to enable liquid staking on the BSC, offering all the fundamental features of a BNB liquid staking service, including minting and burning rBNB, depositing and withdrawing BNB, as well as staking pool management, among other functionalities.
+
+### System Staking Contract Interface
+
+The BSC provides contract interfaces for staking, which enable the implementation of staking-related features on the BSC by using IStaking.sol.
+
+```js
+pragma solidity 0.7.6;
+
+// SPDX-License-Identifier: GPL-3.0-only
+
+interface IStaking {
+    function delegate(address validator, uint256 amount) external payable;
+
+    function undelegate(address validator, uint256 amount) external payable;
+
+    function redelegate(address validatorSrc, address validatorDst, uint256 amount) external payable;
+
+    function claimReward() external returns (uint256);
+
+    function claimUndelegated() external returns (uint256);
+
+    function getDelegated(address delegator, address validator) external view returns (uint256);
+
+    function getTotalDelegated(address delegator) external view returns (uint256);
+
+    function getDistributedReward(address delegator) external view returns (uint256);
+
+    function getPendingRedelegateTime(
+        address delegator,
+        address valSrc,
+        address valDst
+    ) external view returns (uint256);
+
+    function getUndelegated(address delegator) external view returns (uint256);
+
+    function getPendingUndelegateTime(address delegator, address validator) external view returns (uint256);
+
+    function getRelayerFee() external view returns (uint256);
+
+    function getMinDelegation() external view returns (uint256);
+
+    function getRequestInFly(address delegator) external view returns (uint256[3] memory);
+}
+```
+### Staking Pool
+
+**Data Structs**
+
+```js
+EnumerableSet.AddressSet bondedPools;
+mapping(address => PoolInfo) public poolInfoOf;
+mapping(address => EnumerableSet.AddressSet) validatorsOf;
+mapping(address => uint256) public latestRewardTimestampOf;
+mapping(address => uint256) public undistributedRewardOf;
+mapping(address => uint256) public pendingDelegateOf;
+mapping(address => uint256) public pendingUndelegateOf;
+mapping(address => mapping(address => uint256)) public delegatedOfValidator; // delegator => validator => amount
+mapping(address => bool) waitingRemovedValidator;
+mapping(uint256 => uint256) public eraRate;
+
+// unstake info
+uint256 public nextUnstakeIndex;
+mapping(uint256 => UnstakeInfo) public unstakeAtIndex;
+mapping(address => EnumerableSet.UintSet) unstakeOfUser;
+```
+
+- `poolInfoOf`: record the information and status about the staking pool .
+- `validatorsOf`: record sets of validator addresses, where each set represents the validators to which StaFi has delegated staking pool BNB.
+- `latestRewardTimestampOf`: record the block number of the last time the StaFi received staking rewards.
+- `undistributedRewardOf`: record the undistributed staking rewards.
+- `pendingDelegateOf`: record pending delegated amounts.
+- `pendingUndelegateOf`: record pending undelegated amounts.
+- `delegatedOfValidator`: record the delegated amounts to this validator.
+- `waitingRemovedValidator`: record whether this validator is waiting to be removed.
+- `eraRate`: record rBNB exchange rate
+- `unstakeAtIndex`: record the unstake info.
+- `unstakeOfUser`: record the unbond index of users who have not withdrawn.
+
+**Events**
+
+```js
+event Stake(address staker, address poolAddress, uint256 tokenAmount, uint256 rTokenAmount);
+event Unstake(address staker, address poolAddress, uint256 tokenAmount, uint256 rTokenAmount, uint256 burnAmount,uint256 unstakeIndex);
+event Withdraw(address staker, address poolAddress, uint256 tokenAmount, uint256[] unstakeIndexList);
+event ExecuteNewEra(uint256 indexed era, uint256 rate);
+event Settle(uint256 indexed era, address indexed pool);
+event RepairDelegated(address pool, address validator, uint256 govDelegated, uint256 localDelegated);
+event SetUnbondingDuration(uint256 unbondingDuration);
+event Delegate(address pool, address validator, uint256 amount);
+event Undelegate(address pool, address validator, uint256 amount);
+```
+
+**Function**
+
+`getRate`: get the exchange rate of rBNB.
+
+```js
+function getRate() external view override returns (uint256) {
+  return rate;
+}
+```
+
+`getBondedPools`: get the sets of staking pool addresses.
+
+```js
+function getBondedPools() external view returns (address[] memory pools) {
+        pools = new address[](bondedPools.length());
+        for (uint256 i = 0; i < bondedPools.length(); ++i) {
+            pools[i] = bondedPools.at(i);
+        }
+        return pools;
+    }
+```
+
+`getValidatorsOf`: get the sets of validator addresses, where each set represents the validators to which StaFi has delegated staking pool BNB.
+
+```js
+function getValidatorsOf(address _poolAddress) external view returns (address[] memory validators) {
+        validators = new address[](validatorsOf[_poolAddress].length());
+        for (uint256 i = 0; i < validatorsOf[_poolAddress].length(); ++i) {
+            validators[i] = validatorsOf[_poolAddress].at(i);
+        }
+        return validators;
+    }
+```
+`getUnstakeIndexListOf`: get the unstake index List.
+
+```js
+function getUnstakeIndexListOf(address _staker) external view returns (uint256[] memory unstakeIndexList) {
+        unstakeIndexList = new uint256[](unstakeOfUser[_staker].length());
+        for (uint256 i = 0; i < unstakeOfUser[_staker].length(); ++i) {
+            unstakeIndexList[i] = unstakeOfUser[_staker].at(i);
+        }
+        return unstakeIndexList;
+    }
+```
+
+`stake`: allow users to perform stake operations, stake BNB into the staking pool, and receive rBNB in return.
+
+```js
+function stake(uint256 _stakeAmount) external payable {
+        stakeWithPool(bondedPools.at(0), _stakeAmount);
+    }
+```
+
+`unstake`: allow users to perform unstake operations, burn rBNB, and record the corresponding amount of BNB.
+
+```js
+function unstake(uint256 _rTokenAmount) external payable {
+        unstakeWithPool(bondedPools.at(0), _rTokenAmount);
+    }
+```
+
+`withdraw`: allow users to perform withdrawal operations and withdraw unstaked BNB to their wallet.
+
+```js
+function withdraw() external payable {
+        withdrawWithPool(bondedPools.at(0));
+    }
+```
+
+`settle`: permissionless, allow users to update delegation and undelegation by calling the contract, enabling them to claim their principal and reward in a fully decentralized manner.
+
+```js
+function settle(address _poolAddress) public {
+        require(bondedPools.contains(_poolAddress), "pool not exist");
+        _checkAndRepairDelegated(_poolAddress);
+
+        // claim undelegated
+        IStakePool(_poolAddress).checkAndClaimUndelegated();
+
+        PoolInfo memory poolInfo = poolInfoOf[_poolAddress];
+
+        // cal pending value
+        uint256 pendingDelegate = pendingDelegateOf[_poolAddress].add(poolInfo.bond);
+        uint256 pendingUndelegate = pendingUndelegateOf[_poolAddress].add(poolInfo.unbond);
+
+        uint256 deduction = pendingDelegate > pendingUndelegate ? pendingUndelegate : pendingDelegate;
+        pendingDelegate = pendingDelegate.sub(deduction);
+        pendingUndelegate = pendingUndelegate.sub(deduction);
+
+        // update pool state
+        poolInfo.bond = 0;
+        poolInfo.unbond = 0;
+        poolInfoOf[_poolAddress] = poolInfo;
+
+        _settle(_poolAddress, pendingDelegate, pendingUndelegate);
+    }
+```
+
+## Multisig
+
+To ensure security and decentralization in managing and configuring the staking pool, we wil introduce multisig and implement it through threshold signatures.
+
+## Relay
+
+To update delegation and undelegation operations in the contract, we have developed a newly designed and simplified service called Relay. This service triggers Era updates and synchronizes unrewarded data from the BSC chain that has not yet been synced to the contract, ensuring the accuracy of exchange rates. Because the reward will only be synced to BSC when it is greater than 1 BNB.
+
+If the contract can synchronize any amount of stake rewards on BSC in the future, Relay will evolve into a permissionless service. Its function will be limited to triggering era updates on a scheduled basis, which will enhance security and decentralization even further.
+
+# Security Considerations
+
+Relay is an offline service that is vulnerable to slashing or attacks. If it remains unrecoverable for an extended period, users can call the settle function in the contract to initiate delegation and undelegation operations, allowing them to withdraw their assets. Furthermore, to ensure exchange rate stability, a rateChangeLimit has been implemented to ensure that the exchange rate increases linearly.
+
+In addition, asset migration and security are important considerations. To ensure security, we will conduct audits and repeated testing, and closely monitor the migration process for any potential issues.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).

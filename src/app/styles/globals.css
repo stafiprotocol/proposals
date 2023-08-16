@@ -16,13 +16,15 @@
   }
 }
 
+/* font */
+
 @font-face {
   font-family: 'AdobeTextPro-Regular';
   font-weight: 400;
   font-display: block;
   font-style: normal;
   font-named-instance: 'Regular';
-  src: url('./fonts/AdobeTextPro-Regular.woff2') format('woff2');
+  src: url('../fonts/AdobeTextPro-Regular.woff2') format('woff2');
 }
 
 @font-face {
@@ -31,5 +33,15 @@
   font-display: block;
   font-style: italic;
   font-named-instance: 'Italic';
-  src: url('./fonts/Inter-roman-latin.var.woff2') format('woff2');
+  src: url('../fonts/Inter-roman-latin.var.woff2') format('woff2');
+}
+
+/* code */
+
+code {
+  @apply bg-gray-200 px-1 py-0.5 text-sm  dark:bg-gray-700;
+}
+
+code.hljs {
+  @apply p-6 block overflow-y-auto mb-4;
 }

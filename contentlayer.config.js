@@ -1,6 +1,11 @@
 import { defineDocumentType, makeSource } from "contentlayer/source-files"
+import highlight from "rehype-highlight"
+import remarkMermaid from "rehype-mermaidjs"
+
+
 
 /** @type {import('contentlayer/source-files').ComputedFields} */
+
 const computedFields = {
   slug: {
     type: "string",
@@ -58,4 +63,7 @@ export const Proposal = defineDocumentType(() => ({
 export default makeSource({
   contentDirPath: 'proposal',
   documentTypes: [Proposal],
+  mdx: {
+    rehypePlugins: [highlight,remarkMermaid],
+  },
 })

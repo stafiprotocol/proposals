@@ -1,0 +1,206 @@
+---
+title: '[SIP-4]A New Liquid Staking Implementation for MATIC Using the EVM LSD Architecture'
+description: In SIP-3 1, the StaFi team proposed a new implementation of BNB liquid staking using EVM LST Architecture, which represents a significant improvement in both the usability and security of the staking process. We are dedicated to further promoting the adoption of the EVM LST Architecture, and as part of this effort, we are proposing to migrate rMATIC to this new architecture and decoupling rMATIC from the StaFi Chain. After the migration is completed, both the usability and security of rMATIC will be improved.
+date: 2023-03-01
+status: 2
+ipfshash:
+snapshotlink:
+---
+
+# Abstract
+
+In SIP-3 1, the StaFi team proposed a new implementation of BNB liquid staking using EVM LST Architecture, which represents a significant improvement in both the usability and security of the staking process. We are dedicated to further promoting the adoption of the EVM LST Architecture, and as part of this effort, we are proposing to migrate rMATIC to this new architecture and decoupling rMATIC from the StaFi Chain. After the migration is completed, both the usability and security of rMATIC will be improved.
+
+# Motivation
+
+rMATIC is an important part of the rToken, issued on the StaFi Chain. However, there are some usability issues. users need to have two wallets and sign multiple transactions to mint rMATIC.
+
+Switching rMATIC to the EVM LSD architecture can solve the usability issues mentioned above. Additionally, we have made some security updates, including introducing the Native Staking contract interface for Polygon POS, and simplifying relay services, among others.
+
+# Specification
+
+## Overview
+
+Since the Polygon POS staking contract is deployed on the Ethereum, the MATIC staking contract has been designed to also be deployed on the Ethereum.
+
+There are mainly three components:
+
+- Staking contracts on Ethereum: A new set of contracts has been designed to implement MATIC liquid staking on the Ethereum.
+- rMATIC relay: A newly designed and simplified service is used to trigger Era updates in the contract for delegation and undelegation operations. This is a permissionless service, which means that anyone can run it to update the era.
+- System staking contract on Ethereum: A system contract in charge of handling MATIC staking requests on Ethereum.
+
+This new set of contracts has been specifically designed to enable liquid staking for MATIC on the Ethereum, offering all the fundamental features of a MATIC liquid staking service, including minting and burning rMATIC, depositing and withdrawing MATIC, as well as staking pool management, among other functionalities.
+
+## System Staking Contract Interface
+
+The Polygon provides two contract interfaces for staking, which enable the implementation of staking-related features on the Ethereum by using `IGovStakeManager.sol` and `IValidatorShare.sol`.
+
+```js
+pragma solidity 0.7.6;
+
+// SPDX-License-Identifier: GPL-3.0-only
+
+interface IGovStakeManager {
+    function migrateDelegation(uint256 fromValidatorId, uint256 toValidatorId, uint256 amount) external;
+
+    function epoch() external view returns (uint256);
+
+    function withdrawalDelay() external view returns (uint256);
+
+    function getValidatorContract(uint256 validatorId) external view returns (address);
+}
+```
+
+```js
+// SPDX-License-Identifier: GPL-3.0-only
+
+interface IValidatorShare {
+    struct DelegatorUnbond {
+        uint256 shares;
+        uint256 withdrawEpoch;
+    }
+
+    function withdrawRewards() external;
+
+    function buyVoucher(uint256 _amount, uint256 _minSharesToMint) external returns (uint256 amountToDeposit);
+
+    function sellVoucher_new(uint256 claimAmount, uint256 maximumSharesToBurn) external;
+
+    function unstakeClaimTokens_new(uint256 unbondNonce) external;
+
+    function restake() external returns (uint256, uint256);
+
+    function getTotalStake(address user) external view returns (uint256, uint256);
+
+    function getLiquidRewards(address user) external view returns (uint256);
+
+    function unbonds_new(address user, uint256 nonce) external view returns (DelegatorUnbond calldata);
+}
+```
+## Staking Pool
+
+### Data Structs
+
+```js
+EnumerableSet.AddressSet bondedPools;
+mapping(address => PoolInfo) public poolInfoOf;
+mapping(address => EnumerableSet.UintSet) validatorIdsOf;
+mapping(address => mapping(uint256 => uint256)) public maxClaimedNonceOf; // pool => validator Id => max claimed nonce
+mapping(uint256 => uint256) public eraRate;
+
+// unstake info
+uint256 public nextUnstakeIndex;
+mapping(uint256 => UnstakeInfo) public unstakeAtIndex;
+mapping(address => EnumerableSet.UintSet) unstakesOfUser;
+```
+
+- `poolInfoOf`: record the information and status about the staking pool .
+- `validatorsOf`: record sets of validator addresses, where each set represents the validators to which StaFi has delegated staking pool BNB.
+- `maxClaimedNonceOf`: record the maximum nonce that the address has claimed for reward
+- `eraRate`: record rBNB exchange rate
+- `unstakeAtIndex`: record the unstake info.
+- `unstakeOfUser`: record the unbond index of users who have not withdrawn.
+
+### Events
+
+```js
+event Stake(address staker, address poolAddress, uint256 tokenAmount, uint256 rTokenAmount);
+event Unstake(
+        address staker,
+        address poolAddress,
+        uint256 tokenAmount,
+        uint256 rTokenAmount,
+        uint256 burnAmount,
+        uint256 unstakeIndex
+    );
+event Withdraw(address staker, address poolAddress, uint256 tokenAmount, int256[] unstakeIndexList);
+event ExecuteNewEra(uint256 indexed era, uint256 rate);
+event SetUnbondingDuration(uint256 unbondingDuration);
+event Delegate(address pool, uint256 validator, uint256 amount);
+event Undelegate(address pool, uint256 validator, uint256 amount);
+event NewReward(address pool, uint256 amount);
+event NewClaimedNonce(address pool, uint256 validator, uint256 nonce);
+```
+
+### Function
+
+`getRate`: get the exchange rate of rBNB.
+
+```js
+function getRate() external view override returns (uint256) {
+  return rate;
+}
+```
+
+`getBondedPools`: get the sets of staking pool addresses.
+
+```js
+function getBondedPools() external view returns (address[] memory pools) {
+        pools = new address[](bondedPools.length());
+        for (uint256 i = 0; i < bondedPools.length(); ++i) {
+            pools[i] = bondedPools.at(i);
+        }
+        return pools;
+    }
+```
+
+`getValidatorsOf`: get the sets of validator addresses, where each set represents the validators to which StaFi has delegated staking pool BNB.
+
+```js
+function getValidatorsOf(address _poolAddress) external view returns (address[] memory validators) {
+        validators = new address[](validatorsOf[_poolAddress].length());
+        for (uint256 i = 0; i < validatorsOf[_poolAddress].length(); ++i) {
+            validators[i] = validatorsOf[_poolAddress].at(i);
+        }
+        return validators;
+    }
+```
+`getUnstakeIndexListOf`: get the unstake index List.
+
+```js
+function getUnstakeIndexListOf(address _staker) external view returns (uint256[] memory unstakeIndexList) {
+        unstakeIndexList = new uint256[](unstakeOfUser[_staker].length());
+        for (uint256 i = 0; i < unstakeOfUser[_staker].length(); ++i) {
+            unstakeIndexList[i] = unstakeOfUser[_staker].at(i);
+        }
+        return unstakeIndexList;
+    }
+```
+
+`stake`: allow users to perform stake operations, stake BNB into the staking pool, and receive rBNB in return.
+
+```js
+function stake(uint256 _stakeAmount) external payable {
+        stakeWithPool(bondedPools.at(0), _stakeAmount);
+    }
+```
+
+`unstake`: allow users to perform unstake operations, burn rBNB, and record the corresponding amount of BNB.
+
+```js
+function unstake(uint256 _rTokenAmount) external payable {
+        unstakeWithPool(bondedPools.at(0), _rTokenAmount);
+    }
+```
+
+`withdraw`: allow users to perform withdrawal operations and withdraw unstaked BNB to their wallet.
+
+```js
+function withdraw() external payable {
+        withdrawWithPool(bondedPools.at(0));
+    }
+```
+
+## Relay
+
+To update delegation and undelegation operations in the contract, we have developed a newly designed and simplified service called Relay. This service triggers Era updates and synchronizes unrewarded data from the BSC chain that has not yet been synced to the contract, ensuring the accuracy of exchange rates. Because the reward will only be synced to BSC when it is greater than 1 BNB.
+
+# Security Considerations
+
+Relay is an offline service that is vulnerable to slashing or attacks. If it remains unrecoverable for an extended period, users can call the settle function in the contract to initiate delegation and undelegation operations, allowing them to withdraw their assets. Furthermore, to ensure exchange rate stability, a rateChangeLimit has been implemented to ensure that the exchange rate increases linearly.
+
+In addition, asset migration and security are important considerations. To ensure security, we will conduct audits and repeated testing, and closely monitor the migration process for any potential issues.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).

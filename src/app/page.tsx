@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 import { allProposals, Proposal } from "contentlayer/generated";
 import ProposalCard from '@/components/proposalcard';
@@ -13,9 +15,11 @@ export default function Home() {
 
   return (
     <main className='bg-[#E9EAEE] flex flex-col min-h-screen'>
-      <Header/>
-      <div className='px-16 pt-32 pb-16 flex-grow'>
-        <div className='space-y-4'>
+      <div className='z-10'>
+        <Header/>
+      </div>
+      <div className='px-16 pt-32 pb-16 flex-grow z-0'>
+        <div className='space-y-6'>
           {proposals.map((proposal,idx) => (
             <ProposalCard 
               key={idx} 

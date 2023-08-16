@@ -1,0 +1,35 @@
+---
+title: '[SIP-6]Proposal To Remove Redundant Bridges On The rBridge'
+description: As StaFi transitions to its new charter - which includes a new rToken construction and updated Tokenomics, several infrastructures require modifications to align with these changes. A notable example of these updates is the recent launch of the rToken merged app.
+date: 2023-03-01
+status: 2
+ipfshash:
+snapshotlink:
+---
+
+# Abstract
+
+As StaFi transitions to its new charter - which includes a new rToken construction and updated Tokenomics, several infrastructures require modifications to align with these changes. A notable example of these updates is the recent launch of the rToken merged app.
+
+This proposal outlines a forthcoming update concerning the rBridge. The rBridge is designed to enhance the interoperability of rTokens issued on the StaFi Chain or StaFi Hub.These rTokens can be seamlessly transferred to target chains, such as Ethereum, BSC, and Cosmos, and can be integrated into DeFi. With this update, certain bridges within the rBridge tool will be removed to mitigate potential risks associated with unused bridges.
+
+# Motivation
+
+There are 3 simple reasons that we need to do the update:
+- To mitigate potential risks from unused bridges.
+- To conserve development resources.
+- To align with the protocol’s latest updates.
+
+# Specifications
+
+The chart below illustrates StaFi’s currently available bridges for the rTokens and FIS. It also highlights the recommended bridges for removal and suggests which assets should reside on the target chains. For example, the two-way bridge for rETH between StaFi Chain and Ethereum is recommended for removal, given that rETH is exclusively issued on Ethereum and participates in Ethereum’s DeFi ecosystem.
+
+Direct removal of the bridges could pose a problem, as some assets might end up trapped on unintended chains, rendering them ineffective. Based on our analysis, we suggest offering a 1-month window for community members to bridge their assets. During this period, users can transfer their assets to the desired chains before the bridges are removed.
+
+There would be no incentive to retain assets on an unintended chain. If you don’t possess any assets on these chains, no action is required on your part.
+
+# Following Actions
+
+This is a signal proposal, and we welcome all feedback.
+
+Should no critical concerns be raised in this discussion, the 1-month window will commence at 0:00 UTC on 15th Aug 2023 and conclude at 0:00 UTC on 15th Sept 2023. The bridges marked for removal in the table above will be removed following this period.
