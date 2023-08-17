@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // \@ts-nocheck
-import * as dotenv from "dotenv" // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+import * as dotenv from "dotenv"
 import bs58 from "bs58"
 import { execSync } from "child_process"
 import { exit } from "process"
