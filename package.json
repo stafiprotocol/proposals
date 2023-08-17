@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "parse-markdown": "m2j ./proposal/*.mdx -c -o ./cid/ipfs-sips/all-sips.json",
-    "upload:pinata-thegraph": "ts-node scripts/aip-uploader.ts && rm tmp"
+    "upload:pinata-thegraph": "ts-node scripts/uploader.ts && rm tmp"
   },
   "dependencies": {
     "@types/node": "20.4.9",
@@ -31,6 +31,7 @@
     "rehype-mermaidjs": "latest",
     "remark-slug": "latest",
     "tailwindcss": "3.3.3",
+    "ts-node": "^10.9.1",
     "typescript": "5.1.6"
   }
 }
