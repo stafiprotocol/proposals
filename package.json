@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "parse-markdown": "m2j ./proposal/*.mdx -c -o ./cid/ipfs-sips/all-sips.json",
-    "upload:pinata-thegraph": "ts-node scripts/uploader.js && rm tmp"
+    "upload:pinata-thegraph": "node scripts/uploader.js && rm tmp"
   },
   "dependencies": {
     "@types/node-fetch": "^2.6.4",
