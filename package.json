@@ -21,7 +21,7 @@
     "dotenv": "^16.3.1",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.13",
-    "markdown-json": "latest",
+    "markdown-to-json": "^0.5.4",
     "next": "13.4.13",
     "next-contentlayer": "latest",
     "postcss": "8.4.27",
