@@ -1,5 +1,3 @@
-'use client';
-
 import * as React from 'react';
 import Status from './status';
 import { IpfsIcon,SnapshotIcon,ArrowIcon } from './icons';

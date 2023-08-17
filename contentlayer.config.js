@@ -2,8 +2,6 @@ import { defineDocumentType, makeSource } from "contentlayer/source-files"
 import highlight from "rehype-highlight"
 import remarkMermaid from "rehype-mermaidjs"
 
-
-
 /** @type {import('contentlayer/source-files').ComputedFields} */
 
 const computedFields = {
@@ -39,6 +37,10 @@ export const Proposal = defineDocumentType(() => ({
       required: true,
     },
     ipfshash:{
+      type: "string",
+      required: false,
+    },
+    discusslink:{
       type: "string",
       required: false,
     },

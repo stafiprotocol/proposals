@@ -8,16 +8,16 @@ export const mdxComponents: MDXComponents = {
   // Override the default <a> element to use the next/link component.
   a: ({ href, children }) => <Link href={href as string}>{children}</Link>,
   h1: ({...props}) =>(
-    <h1 className='text-3xl text-black mt-10 mb-6 md:leading-loose font-medium border-b-[1px]' {...props}/>
+    <h1 className='text-3xl text-[#37352F] mt-6 mb-4 font-semibold' {...props}/>
   ),
   h2:({...props}) =>(
-    <h2 className='text-2xl text-black mt-10 mb-4 md:leading-loose font-medium' {...props}/>
+    <h2 className='text-2xl text-[#37352F] mt-6 mb-1 font-semibold' {...props}/>
   ),
   h3:({...props}) =>(
-    <h3 className='text-xl text-black mt-10 mb-2 md:leading-loose font-medium' {...props}/>
+    <h3 className='text-xl text-black mt-10 mb-2 font-semibold' {...props}/>
   ),
   p:({...props}) =>(
-    <p className='text-base text-black/70 leading-relaxed tracking-wide mb-2' {...props}/>
+    <p className='text-base text-[#37352F] leading-normal mt-2 mb-2' {...props}/>
   ),
   img:({ ...props }) =>(
     <img { ...props } className='w-full'/>
@@ -29,13 +29,13 @@ export const mdxComponents: MDXComponents = {
     <table className="table-auto" {...props}/>
   ),
   ul:({...props}) => (
-    <ul className='list-disc list-inside' {...props}/>
+    <ul className='list-disc list-inside pl-2' {...props}/>
   ),
   ol:({...props}) => (
     <ol className='list-decimal list-inside' {...props}/>
   ),
   li:({...props}) => (
-    <li className='text-base text-black/70 leading-relaxed tracking-wide mb-2' {...props} />
+    <li className='text-base text-[#37352F] mt-2 mb-2' {...props} />
   ),
   // Add a custom component.
 }

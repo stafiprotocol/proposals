@@ -2,25 +2,36 @@
 
 import * as React from 'react';
 import Link from 'next/link';
-import { StaFiIcon } from './icons';
+import { StaFiIcon,GithubIcon,DiscordIcon } from './icons';
 
 export const Header = () => {
 
   return(
-    <div className='bg-white p-4 fixed w-full'>
+    <div className='bg-white p-4 sticky top-0 w-full z-10'>
       <div className='max-w-6xl mx-auto'>
-        <Link href='/'>
-          <div className='flex items-center justify-center space-x-2'>
-            <StaFiIcon/>
-            <div className='text-xl font-bold'>
-              StaFi Protocol
-            </div>
+          <div className='flex items-center justify-center space-x-3'>
+            <Link href='/'>
+              <StaFiIcon/>
+            </Link>
+            <Link href='/'>
+              <div className='text-xl font-bold'>
+                StaFi Protocol
+              </div>
+            </Link>
             <div className='grow'></div>
-            <div className='text-xl font-bold'>
-              github
+            <div className='flex items-center justify-center space-x-8'>
+              <Link href=''>
+                <div className='w-5 h-5'>
+                  <DiscordIcon/>
+                </div>
+              </Link>
+              <Link href=''>
+                <div className='w-5 h-5'>
+                  <GithubIcon/>
+                </div>
+              </Link>
             </div>
           </div>
-        </Link>
       </div>
     </div>
   )

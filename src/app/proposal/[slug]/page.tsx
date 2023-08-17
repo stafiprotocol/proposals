@@ -22,10 +22,9 @@ export default async function ProposalPage({ params }: { params: { slug: string 
   const MDXContent = getMDXComponent(proposal.body.code)
 
   return (
-    <>
-    
+    <div>
       <Header/>
-      <div className="pt-48 max-w-5xl mx-auto">
+      <div className="mt-32 max-w-3xl mx-auto">
         <div className="text-5xl font-title">
           {proposal.title}
         </div>
@@ -33,8 +32,7 @@ export default async function ProposalPage({ params }: { params: { slug: string 
           <MDXContent components={mdxComponents} />
         </div>
       </div>
-       
       <Footer/>
-    </>
+    </div>
   )
 }
