@@ -4,7 +4,7 @@ import * as dotenv from "dotenv" // see https://github.com/motdotla/dotenv#how-d
 import bs58 from "bs58"
 import { execSync } from "child_process"
 import { exit } from "process"
-import rawJsonAips from "../cid/ipfs-sips/all-sip.json"
+import rawJsonAips from "../cid/ipfs-sips/all-sips.json"
 import fs from "fs"
 import fetch from "node-fetch"
 // @ts-ignore
