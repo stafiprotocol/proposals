@@ -3,10 +3,10 @@ name: IPFS Upload
 on:
   push:
     paths:
-      - '**/*.mdx' # 仅监测 MDX 文件的更改
+      - '**/*.mdx'
 
 env:
-  PINATA_API_KEY: ${{ secrets.PINATA_API_KEY }} # 设置 Pinata API 密钥
+  PINATA_API_KEY: 'd840d977f65f180afad1'
 
 jobs:
   ipfs-upload:
@@ -27,15 +27,15 @@ jobs:
       - name: Check if MDX file already uploaded
         id: check-upload
         run: |
-          npx pinata pinListMetadataForIPFS <path-to-your-cid-config-file> --key $PINATA_API_KEY > uploaded_files.txt
+          npx pinata pinListMetadataForIPFS <cid> --key $PINATA_API_KEY > uploaded_files.txt
           echo "::set-output name=uploaded::$(grep -c '<filename>.mdx' uploaded_files.txt)"
 
       - name: Upload to IPFS
-        if: steps.check-upload.outputs.uploaded == '0' # 仅当文件未上传时执行
+        if: steps.check-upload.outputs.uploaded == '0'
         run: |
-          npx pinata pinFileToIPFS <path-to-your-mdx-file> --key $PINATA_API_KEY
+          npx pinata pinFileToIPFS <proposal> --key $PINATA_API_KEY
 
       - name: Update CID config file
-        if: steps.check-upload.outputs.uploaded == '0' # 仅当文件未上传时执行
+        if: steps.check-upload.outputs.uploaded == '0'
         run: |
-          echo "<filename>.mdx: <new-cid>" >> <path-to-your-cid-config-file>
+          echo "<filename>.mdx: <new-cid>" >> <cid>
