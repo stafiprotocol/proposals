@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "parse-markdown": "m2j ./proposal/*.mdx -c -o ./cid/ipfs-aips/all-sips.json",
+    "parse-markdown": "m2j ./proposal/*.mdx -c -o ./cid/ipfs-sips/all-sips.json",
     "upload:pinata-thegraph": "ts-node scripts/aip-uploader.ts && rm tmp"
   },
   "dependencies": {
