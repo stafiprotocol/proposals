@@ -12,6 +12,7 @@ export default function Home() {
   const proposals = allProposals.sort((a, b) =>
     compareDesc(new Date(a.date), new Date(b.date))
   );
+  
 
   return (
     <main className='bg-[#E9EAEE] flex flex-col min-h-screen'>

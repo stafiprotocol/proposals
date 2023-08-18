@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-// \@ts-nocheck
 /* eslint-disable */
 import * as dotenv from "dotenv"
 import bs58 from "bs58"
@@ -8,8 +7,6 @@ import { exit } from "process"
 import rawJsonAips from "../cid/ipfs-sips/all-sips.json" assert { type: "json" };
 import fs from "fs"
 import fetch from "node-fetch"
-// @ts-ignore
-// @ts-ignore
 import Hash from "ipfs-only-hash"
 
 dotenv.config()
@@ -28,9 +25,7 @@ async function getHash(data) {
 }
 
 async function main() {
-  // @ts-ignore
   for (const [name, sip] of Object.entries(rawJsonAips)) {
-    // @ts-ignore
     sip.description = sip.content
     // @ts-ignore
     delete sip.content
