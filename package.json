@@ -2,15 +2,7 @@
   "name": "proposal",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "parse-markdown": "m2j ./proposal/*.mdx -c -o ./cid/ipfs-sips/all-sips.json",
-    "upload:pinata-thegraph": "node scripts/uploader.js && rm tmp"
-  },
+  
   "dependencies": {
     "@types/node-fetch": "^2.6.4",
     "@types/react": "18.2.19",
@@ -40,5 +32,13 @@
   "devDependencies": {
     "@types/node": "20.4.9",
     "prettier": "2.7.1"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "parse-markdown": "m2j ./proposal/*.mdx -c -o ./cid/ipfs-sips/all-sips.json",
+    "upload:pinata-thegraph": "node scripts/uploader.js && rm tmp"
   }
 }
