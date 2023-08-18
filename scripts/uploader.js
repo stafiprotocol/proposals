@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* eslint-disable */
-import * as dotenv from "dotenv"
+const dotenv = require("dotenv");
 import bs58 from "bs58"
 import { execSync } from "child_process"
 import { exit } from "process"
