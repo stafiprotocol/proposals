@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 // \@ts-nocheck
+/* eslint-disable */
 import * as dotenv from "dotenv"
 import bs58 from "bs58"
 import { execSync } from "child_process"
