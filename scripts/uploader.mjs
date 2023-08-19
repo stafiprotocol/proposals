@@ -123,7 +123,6 @@ async function main() {
     )
     await delay(250)
   }
-
 }
 
 ;(async () => {
