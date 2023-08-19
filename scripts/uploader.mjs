@@ -107,6 +107,8 @@ async function main() {
     }
   });
 
+  const dataArray = [];
+
   for (const [name, sip] of Object.entries(rawJsonAips)) {
     sip.description = sip.content
     // @ts-ignore
@@ -116,13 +118,19 @@ async function main() {
     const filename = `./cid/ipfs-sips/${sip.basename}-Ipfs-hashes.json`
     const data = JSON.parse(fs.readFileSync(filename, "utf8"))
 
-    fs.appendFileSync(
-      './cid/ipfs-sips/all-hash.json',
-      // @ts-ignore
-      JSON.stringify({ name: data.name, hash:data.hash }, null, 2)
-    )
-    await delay(250)
+    const dataWrite = {
+      name: data.name,
+      hash: data.hash
+    };
+
+    dataArray.push(data);
+    
   }
+
+  const jsonData = JSON.stringify(dataArray, null, 2);
+  fs.writeFileSync('./cid/ipfs-sips/all-hash.json', jsonData);
+  await delay(250)
+
 }
 
 ;(async () => {
