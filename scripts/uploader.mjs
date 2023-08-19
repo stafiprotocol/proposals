@@ -116,7 +116,7 @@ async function main() {
     const filename = `./cid/ipfs-sips/${sip.basename}-Ipfs-hashes.json`
     const data = JSON.parse(fs.readFileSync(filename, "utf8"))
 
-    fs.writeFileSync(
+    fs.appendFileSync(
       './cid/ipfs-sips/all-hash.json',
       // @ts-ignore
       JSON.stringify({ name: data.name, hash:data.hash }, null, 2)
