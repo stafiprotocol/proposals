@@ -127,7 +127,9 @@ async function main() {
     
   }
 
+  console.log(dataArray);
   const jsonData = JSON.stringify(dataArray, null, 2);
+  console.log(jsonData);
   fs.writeFileSync('./cid/ipfs-sips/all-hash.json', jsonData);
   await delay(250)
 
