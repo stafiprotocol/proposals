@@ -13,8 +13,6 @@ export default function Home() {
     compareDesc(new Date(a.date), new Date(b.date))
   );
 
-  
-
   return (
     <main className='bg-[#E9EAEE] flex flex-col min-h-screen'>
       <Header/>
@@ -35,3 +33,4 @@ export default function Home() {
     </main>
   )
 }
+

@@ -2,7 +2,6 @@
   "name": "proposal",
   "version": "0.1.0",
   "private": true,
-  
   "dependencies": {
     "@types/node-fetch": "^2.6.4",
     "@types/react": "18.2.19",
@@ -14,11 +13,13 @@
     "dotenv": "^16.3.1",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.13",
+    "fs": "^0.0.1-security",
     "ipfs-only-hash": "^4.0.0",
     "markdown-to-json": "^0.5.4",
     "next": "13.4.13",
     "next-contentlayer": "latest",
     "node-fetch": "^3.3.2",
+    "path": "^0.12.7",
     "postcss": "8.4.27",
     "react": "18.2.0",
     "react-dom": "18.2.0",

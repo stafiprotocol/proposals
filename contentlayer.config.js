@@ -36,10 +36,6 @@ export const Proposal = defineDocumentType(() => ({
       type: "number",
       required: true,
     },
-    ipfshash:{
-      type: "string",
-      required: false,
-    },
     discusslink:{
       type: "string",
       required: false,

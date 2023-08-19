@@ -1,18 +1,26 @@
+import fs from 'fs';
+import path from 'path';
 import * as React from 'react';
 import Status from './status';
 import { IpfsIcon,SnapshotIcon,ArrowIcon } from './icons';
 import Link from 'next/link';
+import { GetStaticProps } from 'next';
+
 
 interface ProposalCard {
     title: string;
     description: string;
     status: number;
-    ipfshash: string;
     snapshotlink: string;
-    url: string;
+    url: string
 }
 
 export const ProposalCard = (params: ProposalCard) => {
+
+  
+  const matchedItem = jsonDataList.find(item => item.name === params.title);
+  const hashlink = matchedItem ? matchedItem.hash : '';
+
     return ( 
       <div className='max-w-3xl mx-auto'>
         <div className='block p-6 bg-white rounded-xl'>
@@ -32,7 +40,7 @@ export const ProposalCard = (params: ProposalCard) => {
             </p>
           </Link>
           <div className='grid grid-cols-2 gap-4 mt-4'>
-            { params.ipfshash && <Link href=''>
+            { hashlink && <Link href='{`https://ipfs.io/ipfs/${hashlink}`}'>
               <div className='flex items-center space-x-4 bg-[#E9EAEE]/30 p-2 rounded-md'>
                 <div className='rounded-full bg-[#E9EAEE] p-1.5'>
                   <IpfsIcon/>
@@ -68,5 +76,6 @@ export const ProposalCard = (params: ProposalCard) => {
     )
 
 }
+
 
 export default ProposalCard;

@@ -15,6 +15,7 @@ export default async function ProposalPage({ params }: { params: { slug: string 
   
   const proposal = allProposals.find((proposal) => proposal._raw.flattenedPath === params.slug)
 
+
   if (!proposal) {
     notFound()
   }

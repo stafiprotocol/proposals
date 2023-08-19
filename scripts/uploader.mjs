@@ -98,6 +98,32 @@ async function main() {
       throw error
     }
   }
+
+  fs.truncate('./cid/ipfs-sips/all-hash.json', 0, (error) => {
+    if (error) {
+      console.error('error truncating file', error);
+    } else {
+      console.log('successfully truncated');
+    }
+  });
+
+  for (const [name, sip] of Object.entries(rawJsonAips)) {
+    sip.description = sip.content
+    // @ts-ignore
+    delete sip.content
+
+    // @ts-ignore
+    const filename = `./cid/ipfs-sips/${sip.basename}-Ipfs-hashes.json`
+    const data = JSON.parse(fs.readFileSync(filename, "utf8"))
+
+    fs.writeFileSync(
+      './cid/ipfs-sips/all-hash.json',
+      // @ts-ignore
+      JSON.stringify({ name: data.name, hash:data.hash }, null, 2)
+    )
+    await delay(250)
+  }
+
 }
 
 ;(async () => {
