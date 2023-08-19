@@ -123,7 +123,7 @@ async function main() {
       hash: data.hash
     };
 
-    dataArray.push(data);
+    dataArray.push(dataWrite);
     
   }
 
