@@ -98,15 +98,6 @@ async function main() {
       throw error
     }
   }
-
-  fs.truncate('./cid/ipfs-sips/all-hash.json', 0, (error) => {
-    if (error) {
-      console.error('error truncating file', error);
-    } else {
-      console.log('successfully truncated');
-    }
-  });
-
   const dataArray = [];
 
   for (const [name, sip] of Object.entries(rawJsonAips)) {
