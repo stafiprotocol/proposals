@@ -118,6 +118,8 @@ async function main() {
     
   }
 
+  await delay(250)
+
   console.log(dataArray);
   const jsonData = JSON.stringify(dataArray, null, 2);
   console.log(jsonData);
