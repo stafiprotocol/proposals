@@ -1,36 +1,31 @@
 #!/usr/bin/env node
-// \@ts-nocheck
-import * as dotenv from "dotenv" // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+/* eslint-disable */
+import * as dotenv from "dotenv"
 import bs58 from "bs58"
 import { execSync } from "child_process"
 import { exit } from "process"
-import rawJsonAips from "../cid/ipfs-sips/all-sip.json"
+import rawJsonAips from "../cid/ipfs-sips/all-sips.json" assert { type: "json" };
 import fs from "fs"
 import fetch from "node-fetch"
-// @ts-ignore
 import Hash from "ipfs-only-hash"
 
 dotenv.config()
 
-const { PINATA_KEY, PINATA_SECRET } = process.env as unknown as {
-  PINATA_KEY: string
-  PINATA_SECRET: string
-}
+const { PINATA_KEY, PINATA_SECRET } = process.env
 
 const pinataEndpoint = "https://api.pinata.cloud/pinning/pinJSONToIPFS"
 
-async function delay(ms: number) {
+async function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 
 // https://ethereum.stackexchange.com/questions/44506/ipfs-hash-algorithm
-async function getHash(data: string) {
+async function getHash(data) {
   return Hash.of(data)
 }
 
 async function main() {
   for (const [name, sip] of Object.entries(rawJsonAips)) {
-    // @ts-ignore
     sip.description = sip.content
     // @ts-ignore
     delete sip.content
@@ -60,7 +55,9 @@ async function main() {
         }),
         headers: {
           "Content-Type": "application/json",
+          // @ts-ignore
           pinata_api_key: PINATA_KEY,
+          // @ts-ignore
           pinata_secret_api_key: PINATA_SECRET,
         },
       })
@@ -101,6 +98,34 @@ async function main() {
       throw error
     }
   }
+  const dataArray = [];
+
+  for (const [name, sip] of Object.entries(rawJsonAips)) {
+    sip.description = sip.content
+    // @ts-ignore
+    delete sip.content
+
+    // @ts-ignore
+    const filename = `./cid/ipfs-sips/${sip.basename}-Ipfs-hashes.json`
+    const data = JSON.parse(fs.readFileSync(filename, "utf8"))
+
+    const dataWrite = {
+      name: data.name,
+      hash: data.hash
+    };
+
+    dataArray.push(dataWrite);
+    
+  }
+
+  await delay(250)
+
+  console.log(dataArray);
+  const jsonData = JSON.stringify(dataArray, null, 2);
+  console.log(jsonData);
+  fs.writeFileSync('./cid/ipfs-sips/all-hash.json', jsonData);
+  await delay(250)
+
 }
 
 ;(async () => {

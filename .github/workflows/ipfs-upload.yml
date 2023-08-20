@@ -1,41 +1,72 @@
-name: IPFS Upload
+name: Upload IPFS
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
 
 on:
-  push:
-    paths:
-      - '**/*.mdx'
-
-env:
-  PINATA_API_KEY: 'd840d977f65f180afad1'
+  workflow_dispatch
 
 jobs:
-  ipfs-upload:
+  upload-to-ipfs:
+    name: sip-uploader
+    if: |
+      !contains(github.event.head_commit.message, 'chore(ipfs-hash)')
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - name: Checkout repo
+        uses: actions/checkout@v3
         with:
-          node-version: '14'
+          fetch-depth: 0
+
+      - name: setup config
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci
+      
+      - name: Parse Markdown
+        run: npm run parse-markdown
 
-      - name: Check if MDX file already uploaded
-        id: check-upload
-        run: |
-          npx pinata pinListMetadataForIPFS <cid> --key $PINATA_API_KEY > uploaded_files.txt
-          echo "::set-output name=uploaded::$(grep -c '<filename>.mdx' uploaded_files.txt)"
+      - name: Upload to Pinata and theGraph IPFS
+        env:
+          PINATA_KEY: ${{ secrets.PINATA_KEY }}
+          PINATA_SECRET: ${{ secrets.PINATA_SECRET }}
+        run: npm run upload:pinata-thegraph
 
-      - name: Upload to IPFS
-        if: steps.check-upload.outputs.uploaded == '0'
+      # emits a failure in case there are changes
+      # based on this condition we create a pr back to main
+      - name: Check changes
+        id: checkChanges
+        continue-on-error: true
         run: |
-          npx pinata pinFileToIPFS <proposal> --key $PINATA_API_KEY
+          if [[ -z $(git status -s) ]]
+          then
+            exit 1
+          else
+            git checkout -b ipfs-hash/${{ github.sha }}
+            git add .
+            git commit -am "chore(ipfs-hash): add missing ipfs hashes :robot:"
+            git push origin ipfs-hash/${{ github.sha }}
+            exit 0
+          fi
 
-      - name: Update CID config file
-        if: steps.check-upload.outputs.uploaded == '0'
-        run: |
-          echo "<filename>.mdx: <new-cid>" >> <cid>
+      - uses: actions/github-script@v6
+        if: steps.checkChanges.outcome == 'success'
+        with:
+          script: |
+            github.rest.pulls.create({
+              title: 'chore(ipfs-hash): new ipfs hashes :rocket: :tada:',
+              body: 'This pr contains all newly created ipfs hashes',
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              head: 'ipfs-hash/${{ github.sha }}',
+              base: '${{ github.event.repository.default_branch }}'
+            })
