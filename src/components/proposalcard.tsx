@@ -27,7 +27,7 @@ export const ProposalCard = (params: ProposalCard) => {
     return ( 
       <div className='max-w-3xl mx-auto'>
         <div className='block p-6 bg-white rounded-xl'>
-          <div className='mb-4 flex justify-center items-center space-x-2'>
+          <div className='mb-6 flex justify-center items-center space-x-2'>
             <Status status={params.status}/>
             <div className='grow'>
             </div>

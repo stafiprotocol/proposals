@@ -30,7 +30,7 @@ export const Status = (params: StatusProps) => {
 
   return (
 
-    <div className={`${bgColor} ${textColor} px-1.5 py-0.5 text-sm rounded-[6px]`}>
+    <div className={`${bgColor} ${textColor} px-2 py-1 text-sm rounded-md`}>
       {statusName}
     </div>
 )}
