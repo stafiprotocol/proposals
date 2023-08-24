@@ -1,6 +1,6 @@
 import { defineDocumentType, makeSource } from "contentlayer/source-files"
 import highlight from "rehype-highlight"
-import remarkMermaid from "rehype-mermaidjs"
+import { remarkMermaid } from "@theguild/remark-mermaid"
 
 /** @type {import('contentlayer/source-files').ComputedFields} */
 
@@ -62,6 +62,7 @@ export default makeSource({
   contentDirPath: 'proposal',
   documentTypes: [Proposal],
   mdx: {
-    rehypePlugins: [highlight,remarkMermaid],
+    rehypePlugins: [highlight],
+    remarkPlugins: [remarkMermaid],
   },
 })

@@ -39,7 +39,7 @@
 /* code */
 
 code {
-  @apply bg-gray-200 px-1 py-0.5 text-sm  dark:bg-gray-700;
+  @apply bg-gray-200 px-1 py-0.5 text-sm;
 }
 
 code.hljs {

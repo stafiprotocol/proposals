@@ -1,0 +1,113 @@
+---
+title: '[Discussion Draft] Interchain Security (ICS) on StaFiHub for Enhanced Security, Decentralization, and Scalability'
+description: StaFiHub-ICS represents a transformative approach, aiming to redefine the operational framework of StaFi consumer chains. It’s a step towards meeting the ever-evolving needs of our stakeholders and staying ahead in the competitive landscape of liquid staking. This proposal provides the opportunity for our community to engage in a meaningful discussion about our future direction and to shape the growth trajectory of StaFiHub. The time is ripe for us to consider and act upon the potential benefits of ICS adoption, and this proposal serves as the beacon guiding us through that process.
+date: 2023-06-13
+status: 1
+snapshotlink:
+discusslink: https://dao.stafi.io/t/discussion-draft-interchain-security-ics-on-stafihub-for-enhanced-security-decentralization-and-scalability/86/1
+---
+
+# Introduction
+
+This forum thread outlines a significant proposal for the adoption of Interchain Security (ICS) from Cosmos Hub by StaFiHub, marking a potential paradigm shift in our approach to blockchain security and scalability. In the dynamic ecosystem of decentralized finance, it’s essential to continually innovate and adapt. This proposal is not just a discussion paper but a call to action, signaling our intent to revolutionize StaFi Tokenomics, highlighted in our StaFi Tokenomics V2 Proposal, which encompasses key elements like FIS, rToken, and our consumer chains.
+
+StaFiHub-ICS represents a transformative approach, aiming to redefine the operational framework of StaFi consumer chains. It’s a step towards meeting the ever-evolving needs of our stakeholders and staying ahead in the competitive landscape of liquid staking. This proposal provides the opportunity for our community to engage in a meaningful discussion about our future direction and to shape the growth trajectory of StaFiHub. The time is ripe for us to consider and act upon the potential benefits of ICS adoption, and this proposal serves as the beacon guiding us through that process.
+
+StaFiHub previously launched in Q3 2022 based on the ComosSDK with the purpose of providing liquid staking solutions to Cosmos Ecosystem PoS Networks and Protocols and current has 4 solutions deployed up to date, namely for ATOM, IRIS, HUAHUA, and SWTH. Since then, StaFiHub has implemented IBC (Interblockchain Connections) and ICA (Interchain Accounts) to help bolster security and decentralization, ultimately removing the need for Multi-signature address signing from validators.
+
+To further increase security, StaFiHub proposes to implement the Interchain Security Feature (ICS) which further allows us to increase security and decentralization to ensure high safety for stakers and validators on the StaFiHub network.
+
+# Motivation
+
+AAs we delve into the core of this proposal, it’s important to start with an understanding of StaFiHub’s current landscape. Our platform operates on a permission chain status, a model that has been effective but also encounters certain scalability issues. Scalability, in the world of blockchain technology, is not a luxury, but a necessity, one that ensures sustainable growth and responsiveness to increasing demands.
+
+A significant concern that warrants our attention is the scenario where the Total Value Locked (TVL) in StaFiHub surpasses the FIS staked value in the Chain. This situation is more than a statistical imbalance; it presents a potential security risk that needs to be addressed promptly.
+
+To further expound on this, the Total Value Locked (TVL) represents the aggregate value of assets currently being staked or locked in StaFiHub’s smart contracts. On the other hand, the FIS staked value in the Chain signifies the amount of FIS tokens staked by the validators securing our network. In an ideal scenario, the FIS staked value should be at par with or exceed the TVL to maintain a secure network.
+
+However, if the TVL exceeds the FIS staked value, it could incentivize malicious actors to corrupt the network. They might attempt to take over the network by staking more FIS tokens than currently staked, in order to steal the assets locked in StaFiHub’s contracts. This situation is often referred to as a ‘51% attack’ and poses a significant threat to the security and integrity of our platform.
+
+Interchain Security (ICS) from Cosmos Hub emerges as a compelling solution to these challenges. ICS represents an innovative approach to blockchain security, offering a robust architecture that could safeguard our platform against such threats. Furthermore, the adoption of ICS is not just about enhancing security; it also promises to boost the scalability of the StaFi Solution, a crucial factor for our continued success and growth.
+
+In conclusion, the integration of ICS could be a critical step towards resolving our current issues, fortifying our platform’s security, and setting the stage for our future expansion.
+
+# Interchain Security
+
+Interchain Security (ICS) is an innovative solution from Cosmos Hub designed to address pressing issues related to blockchain security and scalability. As the blockchain ecosystem continues to expand, there is an increasing need for reliable and scalable security measures. ICS aims to meet these needs, providing a robust security framework that can help ensure the integrity and reliability of consumer chains.
+
+At its core, ICS is a security protocol that allows multiple chains to share the security of one or more ‘provider’ chains. This shared security model is based on the idea of ‘shared security’, where validators of a provider chain also validate transactions on the consumer chains. By leveraging the security resources of the provider chain, consumer chains can enhance their own security, reducing the risk of attacks.
+
+In addition to improved security, ICS also offers scalability benefits. As the number of consumer chains grows, the security resources of the provider chain can be efficiently shared among them. This allows for the scalability of the entire network without compromising on security. Consequently, platforms adopting ICS can scale their operations effectively, meeting the growing demands of users and developers alike.
+
+In the context of StaFiHub, adopting ICS would mean that our platform would become a consumer chain of Cosmos Hub. This would allow us to leverage the security resources of Cosmos Hub, enhancing the security of our platform and enabling us to scale our operations more effectively.
+
+Furthermore, it’s important to understand the concept of a CCV (Cross Chain Validation) module and CCV channel, which form the core of the Interchain Security system. The CCV module is the component that implements the CCV protocol, with both the provider and the consumer chains each having their own CCV module. The functionalities provided by these CCV modules differ between the provider chain and the consumer chains, with separate modules for the provider chain (provider CCV module) and the consumer chains (consumer CCV module). In addition, a unique, ordered IBC channel, known as the CCV channel, is used by the provider CCV module to exchange IBC packets with a consumer CCV module. This setup ensures that there’s a separate CCV channel for every consumer chain.
+
+# Robust Security through Interchain Security v1
+
+Through the Interchain Security V1 module, security becomes a shared responsibility facilitated by the Cosmos ecosystem, replacing the previous reliance on StaFiHub’s validators. This is enabled by the implementation of Interchain Security v1, a shared security model that allows for the security of multiple blockchains to be maintained by a single validator set.
+
+Interchain Security v1 allows validators on the provider chain (Cosmos Hub) to use stake on that chain to participate in the consensus of a consumer chain in parallel. In the context of StaFi, Cosmos Hub becomes the provider chain, and StaFi, the consumer chain. The same validator set that builds blocks on the Cosmos Hub also secures the StaFi chain, fostering trust through shared security.
+
+This shared security model, enabled by the Inter-Blockchain Communication (IBC) protocol, allows for efficient and secure cross-chain information transfer. The IBC application layer integrates additional functionalities introduced with an Interchain Standard (ICS).
+
+The Cosmos ecosystem, known for its robustness and reliability, boasts a Total Value Locked (TVL) of $2.3 billion staked ATOM at the time of writing, which greatly exceeds that of StaFiHub. This vast disparity in staked value means that Cosmos is well-equipped to provide a high level of security for StaFiHub. The high TVL on Cosmos not only strengthens its security but also provides a strong disincentive for malicious behavior.
+
+In this new model, the validators of StaFiHub are removed once the Interchain Security v1 is implemented. This shifts the security responsibility entirely onto the Cosmos ecosystem, streamlining the process and ensuring that the StaFiHub ecosystem is secured by a more substantial, established network.
+
+Key to this security process are two crucial operations that the Cross-Chain Validation (CCV) must handle: Validator Set Update and Reward Distribution. Validator Set Update is a two-part operation. Firstly, it involves updating the validator sets of all consumer chains based on information obtained from the provider’s Staking module (i.e., the Staking module on the provider chain) regarding the amount of tokens bonded by validators on the provider chain. Secondly, it ensures the timely completion (relative to the unbonding periods on the consumer chains) of unbonding operations, i.e., operations of unbonding bonded tokens.
+
+The second operation, Reward Distribution, enables the distribution of block production rewards and transaction fees from the consumer chains to the validators on the provider chain. This process ensures a fair reward system for all validators, thereby maintaining the robustness of the network.
+
+In conclusion, the new iteration of the StaFi protocol leverages Interchain Security v1 to eliminate the need for StaFiHub’s validators, thereby streamlining security and operations. The move towards a shared security model lowers the barrier for launching application-specific blockchains with high security guarantees, while also strengthening the overall resilience of the StaFi protocol.
+
+# Cross Chain Validator (CCV)
+
+In terms of operations, CCV must manage several, but we believe the following types are of paramount importance:
+
+- CCV Module: This refers to the module which puts into action the CCV protocol. Both the provider and consumer chains each possess their own distinct CCV module. It’s noteworthy that the functions provided by the CCV module differ between the provider chain and the consumer chains. To simplify, we use the terms ‘provider CCV module’ and ‘consumer CCV module’ to indicate the CCV modules on the provider chain and the consumer chains, respectively.
+- CCV Channel: This is a unique, ordered IBC channel which the provider CCV module employs to exchange IBC packets with a consumer CCV module. It’s important to note that there exists an individual CCV channel for every consumer chain.
+
+
+# Validator Set Update
+
+This operation is bifurcated into two distinct parts:
+
+Updating the validator sets of all the consumer chains, using the information gathered from the provider Staking Module (Staking module of the provider chain). This information pertains to the quantity of tokens that validators on the provider chain have bonded.
+
+Facilitating the prompt completion of unbonding operations, referring to the process of unbonding bonded tokens. This is important relative to the unbonding periods on the consumer chains.
+
+![ics](/image/ics_1.png "ics")
+
+Reward Distribution: This operation ensures the distribution of block production rewards and transaction fees from the consumer chains to the validators on the provider chain. This is a crucial process for maintaining a fair and balanced reward system.
+
+![ics](/image/ics_2.png "ics")
+
+# Benefits of ICS Adoption
+
+The adoption of Interchain Security (ICS) provides a multitude of potential benefits and challenges to StaFiHub, ranging from improved security mechanisms to enhanced scalability, and beyond.
+
+Benefits:
+- Enhanced Security: With Interchain Security v1, StaFiHub will benefit from a shared security model with the Cosmos Hub. The same validator set will build blocks on both chains, ensuring high security guarantees. This robust security setup will increase trust among users and developers in our platform.
+- Improved Decentralization: The implementation of Interchain Security v1 will improve the decentralization of StaFiHub. Validators on the provider chain (Cosmos Hub) will participate in the consensus of our platform in parallel, creating a more decentralized and secure network.
+- Greater Scalability: As the Cosmos ecosystem continues to grow and evolve, adopting Interchain Security ensures that it is equipped to handle the increased demand and complexity that comes with a larger number of rTokens, users, and developers. This makes StaFiHub more resilient and adaptable to future developments and further rToken deployments.
+- Increased Token Utility: With enhanced security, improved decentralization, and greater scalability, we can expect increased adoption of StaFiHub liquid staking solutions. This, in turn, will enhance the token utility of FIS on StaFiHub, reflecting positively on the overall health and robustness of the StaFi ecosystem.
+
+In addition to these core benefits, the integration of ICS can potentially make StaFiHub more attractive to substantial investors, institutions, and DAOs. This is due to the increased security, decentralization, and scalability that ICS offers, which are key considerations for these stakeholders. As such, the adoption of ICS could lead to an increase in the adoption and TVL of StaFiHub.
+
+Challenges:
+- Technical Challenges in Implementing ICS: The transition to Interchain Security v1 will involve substantial technical complexities. It requires integration with the Inter-Blockchain Communication (IBC) protocol and managing increased data storage and processing. Although we have strategies in place to mitigate these challenges, unforeseen technical hurdles may arise during the implementation process.
+- Potential Resistance from the StaFiHub Community: Changes of this magnitude can lead to resistance from some community members, particularly validators who will have to be removed from producing blocks. Clear communication and education will be key to assuaging these concerns, but some resistance should be anticipated.
+- Transitioning Validators: The transition from a StaFiHub specific validator set to relying on the Cosmos ecosystem for security is a significant shift and will require careful planning and execution. Validators will need to be transitioned out as Interchain Security is implemented.
+- Reliance on Cosmos Validator Set: With the adoption of Interchain Security V1, StaFiHub’s security will become heavily reliant on the Cosmos validator set. This introduces a new challenge as it creates a potential single point of failure. If the Cosmos validator set were to be compromised or fail, it could have serious implications for the security and functionality of StaFiHub. The reliance on the Cosmos validator set also means that any issues within the Cosmos ecosystem, such as disagreements among validators or changes in the validator set composition, could directly affect StaFiHub. Therefore, StaFiHub will need to have measures in place to manage these risks, including robust monitoring of the Cosmos validator set and contingency plans for potential issues.
+- Development Plan: We understand that moving to Interchain Security v1 will involve significant changes. Therefore, we have formulated a clear plan for this transition. This includes necessary testing, staged rollouts, and other preparatory steps to ensure a seamless shift to this new security model.
+
+By diligently addressing these challenges, StaFiHub can successfully implement ICS and unlock a more secure, decentralized, and scalable future. The commitment to technical expertise, transparent communication, community engagement, validator support, rigorous testing, and compliance will pave the way for StaFiHub to harness the full potential of ICS, drive innovation, and create lasting value for its ecosystem and stakeholders.
+
+# Conclusion
+
+In conclusion, the adoption of Interchain Security v1 presents a transformative opportunity for StaFiHub. By implementing this groundbreaking solution from Cosmos Hub, we can reinvent our approach to blockchain security and scalability. The integration of Interchain Security v1 will enable us to rely on the established security of the Cosmos Hub validator set, thereby enhancing the security and maximizing the value for our token holders. While challenges may arise, such as the potential over-reliance on the Cosmos validator set and other technical complexities, we are prepared to navigate these obstacles through clear communication, support for validators, and a well-defined transition plan.
+
+The benefits of adopting Interchain Security v1 are substantial. It will provide enhanced security by leveraging a shared security model, instilling trust among users and developers. Furthermore, the improved decentralization and greater scalability will enable us to build a more robust and scalable platform, accommodating the growing demands of our ecosystem. Additionally, the integration of Interchain Security v1 will increase the utility of our tokens, making StaFiHub more attractive to investors, institutions, and DAOs.
+
+As we embark on this journey, we recognize the importance of addressing technical challenges and collaborating closely with our community. Together, we can seize this opportunity to fortify the security of our platform, drive innovation, and shape the future of decentralized finance. We invite our community to actively engage in discussions, provide valuable feedback, and join us in realizing the potential of Interchain Security v1 for the continued growth and success of StaFiHub.

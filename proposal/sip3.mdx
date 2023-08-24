@@ -1,9 +1,10 @@
 ---
 title: '[SIP-3]A New Implementation of rBNB using EVM LSD Architecture'
-description: As the rToken solution extends across numerous ecosystems - including Layer1s, sidechains, Cosmos appchains, and beyond - the tokenomics of StaFi are confronted with challenges that need to support this expansion. These challenges consist of balancing the value of rTokens with chain security, incentivizing validators in StaFi appchains, and establishing a robust on-chain voting system for governance. The issues at hand largely center around the complex nature of the intertwined tokenomics, which include FIS tokenomics, rTokenomics, and appchain tokenomics.
-date: 2023-03-01
+description: rBNB is an important part of the rToken, issued on the StaFi Chain. However, there are some usability issues. Firstly, users need to have two wallets and sign multiple transactions to mint rBNB. Secondly, if users want to participate in DEX trading on Binance Smart Chain (BSC), they need to bridge rBNB from the StaFi Chain to BSC. Finally, burning rBNB requires doing it on the StaFi Chain, which means bridging rBNB from BSC back to the StaFi Chain.
+date: 2023-07-16
 status: 2
 snapshotlink:
+discusslink: https://dao.stafi.io/t/sip-3-a-new-implementation-of-rbnb-using-evm-lsd-architecture/87
 ---
 
 # Abstract
@@ -19,6 +20,8 @@ Switching rBNB to the EVM LSD architecture can solve the usability issues mentio
 # Specification
 
 ## Overview
+
+![BNB](/image/sip3_1.png "BNB staking")
 
 There are mainly three components:
 

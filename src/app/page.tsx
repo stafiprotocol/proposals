@@ -1,11 +1,8 @@
-'use client'
-
-import Image from 'next/image'
 import { allProposals, Proposal } from "contentlayer/generated";
 import ProposalCard from '@/components/proposalcard';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
-import { compareDesc, format, parseISO } from "date-fns";
+import { compareDesc } from "date-fns";
 
 export default function Home() {
 
@@ -16,8 +13,8 @@ export default function Home() {
   return (
     <main className='bg-[#E9EAEE] flex flex-col min-h-screen'>
       <Header/>
-      <div className='px-16 mt-20 pb-16 flex-grow z-0'>
-        <div className='space-y-6'>
+      <div className='px-16 mt-16 pb-16 flex-grow z-0'>
+        <div className='space-y-8'>
           {proposals.map((proposal,idx) => (
             <ProposalCard 
               key={idx} 

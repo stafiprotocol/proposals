@@ -13,21 +13,19 @@ interface ProposalCard {
     description: string;
     status: number;
     snapshotlink: string;
-    url: string
+    url: string;
+    date: string;
 }
 
 export const ProposalCard = (params: ProposalCard) => {
 
-  console.log(jsonDataList)
   const matchedItem = jsonDataList.find(item => `/proposal/${item.name}` === params.url);
-  console.log(matchedItem)
   const hashlink = matchedItem ? matchedItem.hash : '';
-  console.log(hashlink)
 
     return ( 
       <div className='max-w-3xl mx-auto'>
         <div className='block p-6 bg-white rounded-xl'>
-          <div className='mb-4 flex justify-center items-center space-x-2'>
+          <div className='mb-6 flex justify-center items-center space-x-2'>
             <Status status={params.status}/>
             <div className='grow'>
             </div>
@@ -44,11 +42,13 @@ export const ProposalCard = (params: ProposalCard) => {
           </Link>
           <div className='grid grid-cols-2 gap-4 mt-4'>
             { hashlink && <Link href={`https://ipfs.io/ipfs/${hashlink}`} target='_blank'>
-              <div className='flex items-center space-x-4 bg-[#E9EAEE]/30 p-2 rounded-md'>
+              <div className='flex items-center space-x-4 bg-[#E9EAEE]/30 p-1.5 rounded-md'>
                 <div className='rounded-full bg-[#E9EAEE] p-1.5'>
-                  <IpfsIcon/>
+                  <div className='w-6 h-6'>
+                    <IpfsIcon/>
+                  </div>
                 </div>
-                <p className='text-black text-xl'>
+                <p className='text-black text-lg'>
                   IPFS
                 </p>
                 <div className='grow'>
@@ -59,11 +59,13 @@ export const ProposalCard = (params: ProposalCard) => {
               </div>
             </Link>}
             { params.snapshotlink && <Link href=''>
-              <div className='flex items-center space-x-4 bg-[#E9EAEE]/30 p-2 rounded-md'>
-                <div className='rounded-full bg-[#E9EAEE] p-1.5'>
-                  <SnapshotIcon/>
+              <div className='flex items-center space-x-4 bg-[#E9EAEE]/30 p-1.5 rounded-md'>
+                <div className='rounded-full bg-[#E9EAEE] py-1.5 px-2'>
+                  <div className='w-5 h-6'>
+                    <SnapshotIcon/>
+                  </div>
                 </div>
-                <p className='text-black text-xl'>
+                <p className='text-black text-lg'>
                   Snapshot
                 </p>
                 <div className='grow'>
