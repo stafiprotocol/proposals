@@ -37,7 +37,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build & next export",
     "start": "next start",
     "lint": "next lint",
     "parse-markdown": "m2j ./proposal/*.mdx -c -o ./cid/ipfs-sips/all-sips.json",
