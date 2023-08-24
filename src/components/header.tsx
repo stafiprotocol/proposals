@@ -20,12 +20,12 @@ export const Header = () => {
             </Link>
             <div className='grow'></div>
             <div className='flex items-center justify-center space-x-8'>
-              <Link href=''>
+              <Link href='https://discord.gg/Up6vdp8fWx' target='_blank'>
                 <div className='w-5 h-5'>
                   <DiscordIcon/>
                 </div>
               </Link>
-              <Link href=''>
+              <Link href='https://github.com/stafiprotocol/proposals' target='_blank'>
                 <div className='w-5 h-5'>
                   <GithubIcon/>
                 </div>

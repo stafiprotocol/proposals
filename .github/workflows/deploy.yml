@@ -39,7 +39,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       # 执行构建步骤
-      - name: 构建
+      - name: build
         run: |
           npm run build
 

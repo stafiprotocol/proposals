@@ -1,11 +1,8 @@
-'use client'
-
-import Image from 'next/image'
 import { allProposals, Proposal } from "contentlayer/generated";
 import ProposalCard from '@/components/proposalcard';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
-import { compareDesc, format, parseISO } from "date-fns";
+import { compareDesc } from "date-fns";
 
 export default function Home() {
 
