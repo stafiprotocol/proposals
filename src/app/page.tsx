@@ -16,8 +16,8 @@ export default function Home() {
   return (
     <main className='bg-[#E9EAEE] flex flex-col min-h-screen'>
       <Header/>
-      <div className='px-16 mt-20 pb-16 flex-grow z-0'>
-        <div className='space-y-6'>
+      <div className='px-16 mt-16 pb-16 flex-grow z-0'>
+        <div className='space-y-8'>
           {proposals.map((proposal,idx) => (
             <ProposalCard 
               key={idx} 

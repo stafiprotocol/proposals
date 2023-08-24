@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@theguild/remark-mermaid": "^0.0.4",
     "@types/node-fetch": "^2.6.4",
     "@types/react": "18.2.19",
     "@types/react-dom": "18.2.7",

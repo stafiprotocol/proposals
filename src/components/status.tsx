@@ -12,17 +12,17 @@ export const Status = (params: StatusProps) => {
 
   switch(params.status){
     case 2:
-      statusName = 'Passed'
+      statusName = 'Approved'
       bgColor = 'bg-[#4275FF]'
       textColor = 'text-white'
       break
     case 1:
-      statusName = 'Review'
+      statusName = 'RFC'
       bgColor = 'bg-[#8A939C]'
       textColor = 'text-white'
       break
     case 0:
-      statusName = 'Draft'
+      statusName = 'Discussion'
       bgColor = 'bg-[#8A939C]'
       textColor = 'text-white'
       break
