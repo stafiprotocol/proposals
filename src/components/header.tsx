@@ -4,7 +4,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import { StaFiIcon,GithubIcon,DiscordIcon } from './icons';
 
-export const Header = () => {
+const Header = () => {
 
   return(
     <div className='bg-white p-4 sticky top-0 w-full z-10'>

@@ -4,7 +4,7 @@ import Header from '@/components/header';
 import Footer from '@/components/footer';
 import { compareDesc } from "date-fns";
 
-export default function Home() {
+const Home = () => {
 
   const proposals = allProposals.sort((a, b) =>
     compareDesc(new Date(a.date), new Date(b.date))
@@ -22,6 +22,7 @@ export default function Home() {
               description={proposal.description} 
               status={proposal.status}
               date={proposal.date}
+              snapshotlink={proposal.snapshotlink || ''}
               url={proposal.url}/>
           ))}
         </div>
@@ -31,3 +32,4 @@ export default function Home() {
   )
 }
 
+export default Home;

@@ -1,21 +1,28 @@
 import { notFound } from "next/navigation"
 import { allProposals } from "contentlayer/generated"
 import Header from "@/components/header"
-import Footer from "@/components/footer"
 import Link from "next/link"
-import { getMDXComponent } from "next-contentlayer/hooks"
 import Status from "@/components/status"
 import { IpfsIcon, SnapshotIcon, LinkIcon } from "@/components/icons"
 import jsonDataList from '../../../../cid/ipfs-sips/all-hash.json';
 import GetMDXComponent from "@/components/getmdxcomponent"
 
 
-
 export const generateStaticParams = async () => allProposals.map((proposal) => (
   { slug: proposal._raw.flattenedPath }))
 
 
-export default async function ProposalPage({ params }: { params: { slug: string } }) {
+export const generateMetadata = async({ params }: { params: { slug: string } }) => {
+  
+  const proposal = allProposals.find((proposal) => proposal._raw.flattenedPath === params.slug)
+
+    return {
+      title: proposal?.title,
+      description: proposal?.description
+    }
+  }
+
+const ProposalPage = async({ params }: { params: { slug: string } }) => {
   
   const proposal = allProposals.find((proposal) => proposal._raw.flattenedPath === params.slug)
   
@@ -27,11 +34,10 @@ export default async function ProposalPage({ params }: { params: { slug: string 
     notFound()
   }
 
-
   return (
     <div>
       <Header/>
-      <div className="mt-32 max-w-3xl mx-auto">
+      <div className="mt-32 max-w-3xl mx-auto mb-32">
         <div className="mt-10 w-fit">
           <Status status={proposal.status}/>
         </div>
@@ -88,3 +94,5 @@ export default async function ProposalPage({ params }: { params: { slug: string 
     </div>
   )
 }
+
+export default ProposalPage;

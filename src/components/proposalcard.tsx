@@ -1,10 +1,7 @@
-import fs from 'fs';
-import path from 'path';
 import * as React from 'react';
 import Status from '@/components/status';
 import { IpfsIcon,SnapshotIcon,ArrowIcon } from '@/components/icons';
 import Link from 'next/link';
-import { GetStaticProps } from 'next';
 import jsonDataList from '../../cid/ipfs-sips/all-hash.json';
 
 
@@ -17,7 +14,7 @@ interface ProposalCard {
     date: string;
 }
 
-export const ProposalCard = (params: ProposalCard) => {
+const ProposalCard = (params: ProposalCard) => {
 
   const matchedItem = jsonDataList.find(item => `/proposal/${item.name}` === params.url);
   const hashlink = matchedItem ? matchedItem.hash : '';
@@ -30,7 +27,7 @@ export const ProposalCard = (params: ProposalCard) => {
             <div className='grow'>
             </div>
           </div>
-          <Link href={params.url}>
+          <Link href={`${params.url}.html`}>
             <div className='relative break-words leading-7'>
               <h3 className='inline text-3xl font-title'>
                 {params.title}
