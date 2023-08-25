@@ -18,7 +18,27 @@ export const generateMetadata = async({ params }: { params: { slug: string } }) 
 
     return {
       title: proposal?.title,
-      description: proposal?.description
+      description: proposal?.description,
+      twitter: {
+        card: 'summary_large_image',
+        title: proposal?.title,
+        description: proposal?.description,
+        images: ['https://proposals.stafi.io/og.png'],
+      },
+      openGraph: {
+        title: proposal?.title,
+        description: proposal?.description,
+        url: 'https://proposals.stafi.io',
+        siteName: 'StaFi Improvement Proposal',
+        type: 'article',
+        images: [
+          {
+            url: 'https://proposals.stafi.io/og.png',
+            width: 800,
+            height: 600,
+            alt: 'StaFi Improvement Proposal',
+          
+      }]}
     }
   }
 
