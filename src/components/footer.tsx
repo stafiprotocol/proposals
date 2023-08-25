@@ -4,7 +4,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import * as Separator from '@radix-ui/react-separator';
 
-export const Footer = () => {
+const Footer = () => {
 
   return(
     <div className='bg-white p-6 w-full bottom-0 left-0'>
