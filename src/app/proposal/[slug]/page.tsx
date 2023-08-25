@@ -1,15 +1,14 @@
-'use client'
-
 import { notFound } from "next/navigation"
 import { allProposals } from "contentlayer/generated"
-import { getMDXComponent } from 'next-contentlayer/hooks'
-import { mdxComponents } from "@/components/mdxcomponents"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import Link from "next/link"
+import { getMDXComponent } from "next-contentlayer/hooks"
 import Status from "@/components/status"
 import { IpfsIcon, SnapshotIcon, LinkIcon } from "@/components/icons"
 import jsonDataList from '../../../../cid/ipfs-sips/all-hash.json';
+import GetMDXComponent from "@/components/getmdxcomponent"
+
 
 
 export const generateStaticParams = async () => allProposals.map((proposal) => (
@@ -28,7 +27,6 @@ export default async function ProposalPage({ params }: { params: { slug: string 
     notFound()
   }
 
-  const MDXContent = getMDXComponent(proposal.body.code)
 
   return (
     <div>
@@ -84,10 +82,9 @@ export default async function ProposalPage({ params }: { params: { slug: string 
         </div>
      
         <div className='text-black font-inter text-xl mt-16'>
-          <MDXContent components={mdxComponents} />
+          <GetMDXComponent proposal={proposal.body.code}/>
         </div>
       </div>
-      <Footer/>
     </div>
   )
 }
