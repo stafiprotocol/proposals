@@ -4,6 +4,10 @@
     "hash": "Qmd4SnJvjssDScmVcJ4mX3Kg8pJLaYuNzBJnouxWkCV76K"
   },
   {
+    "name": "ics",
+    "hash": "Qmc7iEUCH7ussvSpxm216XZb2a3A2CYfVb4MMB4Vhyn84k"
+  },
+  {
     "name": "sip1",
     "hash": "QmWAammh5YE3GpNfdjudKceFRyrM757MopDBN6M1aZEe75"
   },
@@ -17,7 +21,7 @@
   },
   {
     "name": "sip4",
-    "hash": "QmQypJ1i89ne9cAfo2zUUxpghGUegYxc62qKmZ2keu6Psa"
+    "hash": "QmcXtb1SMMzsZF4oUJNV6Lx4rcjEzgTfsxQFBBt5MRWRqS"
   },
   {
     "name": "sip5",
@@ -30,5 +34,9 @@
   {
     "name": "sip7",
     "hash": "QmdESLkeYLBtxwXHwAqoWfWWmwfrR8FpJCt1vL6HdMMDQ9"
+  },
+  {
+    "name": "sip8",
+    "hash": "QmS95saGNHNDJqFomqvB6MdrGXRERZFzfbuD4CT4Sd8cT6"
   }
 ]
