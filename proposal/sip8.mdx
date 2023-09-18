@@ -1,0 +1,122 @@
+---
+title: '[SIP-8]StaFi LSM Integration Proposal'
+description: Cosmos Liquid Staking Module (LSM) is a modular component that enables liquid staking for any chain in the Cosmos ecosystem. LSM allows users to convert their staked assets into liquid assets without unbonding, which will help to improve the liquidity and security of the Cosmos ecosystem and pave the way for new DeFi applications. By integrating with LSM module, it will be easier for staked ATOM users to participate in StaFi staking service and thus help StaFi to attract more users and grow its community.
+date: 2023-09-07
+status: 2
+snapshotlink: 
+discusslink: https://dao.stafi.io/t/sip-8-stafi-lsm-integration-proposal/116
+---
+
+# Abstract
+
+Cosmos Liquid Staking Module (LSM) is a modular component that enables liquid staking for any chain in the Cosmos ecosystem. LSM allows users to convert their staked assets into liquid assets without unbonding, which will help to improve the liquidity and security of the Cosmos ecosystem and pave the way for new DeFi applications. By integrating with LSM module, it will be easier for staked ATOM users to participate in StaFi staking service and thus help StaFi to attract more users and grow its community.
+
+# Motivation
+
+Without LSM, it is inconvenient for staked ATOM users to participate in the StaFi protocol. If they want to participate, they must first undelegate and wait 21 days before participating in the LSD protocol. This is inconvenient and will lose unbonding earnings. With LSM, users can migrate to the LSD protocol directly and losslessly with one-click operation through the LSM module without undelegate, and will not lose any earnings.
+
+## Why LSD is a must for LSM?
+
+The Liquid Staking Manager (LSM) module allows users to transfer their staked ATOM to a liquid staking account, which mints the corresponding amount of rATOM to their wallet. This allows users to participate in the LSD protocol immediately and without any loss of earnings. However, there are still some limitations to using LSM alone.
+
+One limitation is that the liquid tokens issued by LSM are not fungible. This means that they cannot be traded equally, which can be inconvenient for users who want to use their liquid tokens in DeFi applications.
+
+Another limitation is that the liquid tokens issued by LSM are not interoperable with other DeFi protocols. This means that users cannot easily transfer their liquid tokens between different DeFi applications.
+
+The LSD protocol solves these limitations by providing a unified liquid staking token (LST) that is fungible and interoperable with other DeFi protocols. This makes it more convenient for users to participate in DeFi applications and to trade their liquid tokens.
+
+## Why will LSM benefit the StaFi community?
+
+- Improved liquidity: The LSM module will allow StaFi users to access the liquidity of their staked assets without having to unbond them. This will make it easier for StaFi users to participate in DeFi and other applications that require liquidity.
+- Reduced risk: The LSM module will help to reduce the risk of liquid staking by providing a more secure and transparent way to participate.
+- Enhanced security: The LSM module will be implemented as a module on the Cosmos Hub blockchain, which is a secure and decentralized platform. This will help to protect StaFi users’ funds.
+- Expanded reach: The LSM module will allow StaFi to expand its reach to other Cosmos-based chains. This will give StaFi users more options and make it easier for them to participate in liquid staking.
+- Enhanced user experience: The LSM module will make it easier for staked ATOM users to participate in liquid staking. This is because the module will provide a user-friendly interface and a smooth redelegate experience.
+- Enlarge rATOM TVL: The LSM module will make it easier for users to participate in liquid staking. This will help StaFi to attract more users and grow its community.
+
+# Specification
+
+## Integration Roadmap
+
+### Ver 1
+
+- Native ATOM (Same as previous staking process)
+- On-chain Staked ATOM (Re-delegate function)
+
+### Ver 2
+
+- The TokenizeShares of LSM ATOM (Re-delegate function)
+- Selection function for LSM ATOM TokenizeShares
+
+### TBD
+
+- Other LSD LSM ATOM (Temporarily unacceptable)
+
+## User Flow
+
+![LSM](/image/sip8_1.jpeg "LSM")
+
+> Note: The image is just an example of how the function works. The actual output may vary slightly
+
+- Users will be able to mint rATOM by re-delegate their ATOM on the StaFi rToken APP - rATOM - Redelegate Tab.
+- Users can redeem their rATOM for ATOM at any time.
+- StaFi will provide liquidity for rATOM on major COSMOS DeFi protocols.
+- Re-delegate function will be disabled once overall liquid staked ATOM by all liquid staking providers have reached to 25% of the total supply of staked ATOM.
+
+## Features
+
+![LSM](/image/sip8_2.jpeg "LSM")
+
+Once the development is complete, the StaFi rToken APP will be able to be used by users to stake their ATOM and mint rATOM. The LSM module will track the amount of ATOM that is staked and the amount of rATOM that has been minted. When a user stakes their ATOM, the LSM module will allow the user to transfer their ATOM to a liquid staking account. StaFiHub will then mint the corresponding amount of rATOM to the user’s wallet. When a user redeems their ATOM, the LSM module will allow the user to transfer their rATOM back to their ATOM account. The StaFiHub protocol will then burn the corresponding amount of rATOM.
+
+## To be Considered
+
+In addition to the above, here are some of the challenges that need to be addressed:
+
+- Voting Power: After the launch of LSM, it means that validators with delegations from delegators could become corrupt and use their voting power to behave maliciously and delegators should select validators wisely. Currently StaFi utilize the smart delegation algorithm to select and delegate to the most performed validators, considering currently on-chain self-bond validator amount are very few (normally from 1- 60), which means it could easily achieve the delegation limit, so self-bond amount will be one of the first consideration for StaFi delegation. On the other hand, StaFi delegator voting system is currently under investigation, more details will be released soon.
+- Consumer chain rewards: Consumer chains in the Cosmos ecosystem are blockchains that rely on the security of the Cosmos Hub. In exchange for providing security, consumer chains share their transaction fees and inflation rewards with ATOM stakers and delegators on the Cosmos Hub. The amount of rewards that consumer chains share is determined by a number of factors, including the amount of transaction fees generated by the consumer chain, the inflation rate of the consumer chain, and the number of ATOMs staked on the Cosmos Hub. The StaFi team is working to address the consumer chain rewards allocation mechanism, currently the rewards is too small we haven’t see any perfect solution regarding to this issue, while the research will keep going and we may have more updates on Q4.
+- Validator delegate panel: We will commence construction of the panel once we have accumulated sufficient staking capital and the StaFi community has expressed a measurable demand for such a panel.
+
+# Appendix
+
+## Background
+
+Currently, liquid staking in Cosmos requires the use of third-party service providers. These providers often charge fees and may pose security risks. LSM aims to address these issues by providing users with a more direct and secure way to participate in liquid staking.
+
+### Why the Cosmos LSM module is needed:
+- To improve liquidity: Liquid staking allows users to access the liquidity of their staked assets without having to unbond them. This can be useful for users who want to participate in DeFi or other applications that require liquidity.
+- To improve security: LSM can help to improve the security of liquid staking by providing a more secure way to manage the staking process.
+- To pave the way for new DeFi applications: Liquid staking can enable new DeFi applications that require liquidity. For example, liquid staking could be used to create a lending market for staked assets.
+
+### Benefits of using the Cosmos LSM module:
+
+- Liquidity: Users can access the liquidity of their staked assets without having to unbond them. This can be useful for users who want to participate in DeFi or other applications that require liquidity.
+- Security: The Cosmos LSM module is designed to be secure and reliable. The module is implemented as a module on the Cosmos Hub blockchain, which is a secure and decentralized platform.
+- Efficiency: The Cosmos LSM module is efficient and scalable. The module can support a large number of users and transactions.
+- Interoperability: The Cosmos LSM module is interoperable with other Cosmos-based chains. This means that users can liquid stake their assets on any Cosmos chain that supports the LSM module.
+
+## How it works
+
+LSM uses a mechanism called “representative tokens” to implement liquid staking. When a user stakes their assets, they will receive a representative token. This token can be transferred and traded just like any other token. Users can redeem their assets at any time and receive the value of the representative tokens.
+
+### Limiting liquid staking
+
+The LSM would limit the percentage of liquid staked ATOM by all liquid staking providers to 25% of the total supply of staked ATOM, in order to prevent liquid staking providers from collectively controlling more than ⅓ of the total staked ATOM supply, which is the threshold at which a group of bad actors could halt block production.
+
+Technically speaking, this cap on liquid staked ATOM is enforced by limiting the total number of tokens that can be staked via interchain accounts and tokenized using the liquid staking module on the Cosmos Hub. Once this cap is reached, the LSM prevents interchain accounts from staking any more ATOM and prevents delegators from tokenizing any more delegations using the LSM.
+
+### Validator bond
+
+As an additional security feature, validators who want to receive delegations from liquid staking providers would be required to self-bond a certain amount of ATOM. The validator self-bond, or “validator-bond,” means that validators need to have “skin in the game” in order to be entrusted with delegations from liquid staking providers. This disincentivizes malicious behavior by the validator and empowers the validator to negotiate its relationship with liquid staking providers. Please see the Appendix FAQ for additional descriptions of the validator bond factor and associated dynamics.
+
+Technically speaking, the validator-bond is tracked by the LSM. The maximum number of tokens that can be delegated to a validator by a liquid staking provider is equal to the validator-bond multiplied by the “validator-bond factor.” The initial validator bond factor would be set at 250 and can be configurable by Cosmos Hub governance. Please see the appendix for details on this governance parameter and the starting value of 250.
+
+With a validator-bond factor of 250, for every one ATOM a validator validator-bonds, that validator is eligible to receive up to two-hundred-and-fifty ATOM delegated from liquid staking providers. The validator-bond has no impact on anything other than eligibility for delegations from liquid staking providers.
+
+### Instantly liquid staking staked ATOM
+
+The LSM enables users to instantly liquid stake their staked ATOM, without having to wait the twenty-one day unbonding period. This is important, because a very large portion of the ATOM supply is currently staked. Liquid staking ATOM that is already staked incurs a switching cost in the form of three weeks’ forfeited staking rewards. The LSM eliminates this switching cost.
+
+A user would be able to visit any liquid staking provider that has integrated with the LSM and click a button to convert his staked ATOM to liquid staked ATOM. It would be as easy as liquid staking unstaked ATOM.
+
+Technically speaking, this is accomplished by using something called an “LSM share.” Using the liquid staking module, a user can tokenize their staked ATOM and turn it into LSM shares. LSM shares can be redeemed for underlying staked tokens and are transferable. After staked ATOM is tokenized it can be immediately transferred to a liquid staking provider in exchange for liquid staking tokens - without having to wait for the unbonding period.
