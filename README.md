@@ -1,3 +1,5 @@
+# StaFi Improvement Prpoposals(SIP)
+
 StaFi Improvement Proposals (SIP) describe standards for the core protocol specifications, contract standards and client APIs.They are standardized documents voted upon by StaFi Governance. SIPs can be added, amended, replaced, and removed.
 
 | Name  | IPFS Hash | 
@@ -10,3 +12,6 @@ StaFi Improvement Proposals (SIP) describe standards for the core protocol speci
 | [SIP-5] Enhancing User Experience and Branding through Merging rToken Applications on StaFi Chain and StaFi Hub | Qmek2K3c3cgH5JedSQ9aL6tszsDTdmdyW7FGjakhQ9TfSk | 
 | [SIP-6]Proposal To Remove Redundant Bridges On The rBridge | QmcCSmQao63yuqFu4NS6o5wgRsAs4gyCfQcGfx2Fo1nozn | 
 | [SIP-7] StaFi Router and integration of SSV DVT infrastructure  | QmdESLkeYLBtxwXHwAqoWfWWmwfrR8FpJCt1vL6HdMMDQ9 | 
+| [SIP-8] StaFi LSM Integration Proposal | QmS95saGNHNDJqFomqvB6MdrGXRERZFzfbuD4CT4Sd8cT6 | 
+
+

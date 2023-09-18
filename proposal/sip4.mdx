@@ -97,9 +97,9 @@ mapping(address => EnumerableSet.UintSet) unstakesOfUser;
 ```
 
 - `poolInfoOf`: record the information and status about the staking pool .
-- `validatorsOf`: record sets of validator addresses, where each set represents the validators to which StaFi has delegated staking pool BNB.
+- `validatorsOf`: record sets of validator addresses, where each set represents the validators to which StaFi has delegated staking pool MATIC.
 - `maxClaimedNonceOf`: record the maximum nonce that the address has claimed for reward
-- `eraRate`: record rBNB exchange rate
+- `eraRate`: record rMATIC exchange rate
 - `unstakeAtIndex`: record the unstake info.
 - `unstakeOfUser`: record the unbond index of users who have not withdrawn.
 
@@ -126,7 +126,7 @@ event NewClaimedNonce(address pool, uint256 validator, uint256 nonce);
 
 ### Function
 
-`getRate`: get the exchange rate of rBNB.
+`getRate`: get the exchange rate of rMATIC.
 
 ```js
 function getRate() external view override returns (uint256) {
@@ -146,7 +146,7 @@ function getBondedPools() external view returns (address[] memory pools) {
     }
 ```
 
-`getValidatorsOf`: get the sets of validator addresses, where each set represents the validators to which StaFi has delegated staking pool BNB.
+`getValidatorsOf`: get the sets of validator addresses, where each set represents the validators to which StaFi has delegated staking pool MATIC.
 
 ```js
 function getValidatorsOf(address _poolAddress) external view returns (address[] memory validators) {
@@ -169,7 +169,7 @@ function getUnstakeIndexListOf(address _staker) external view returns (uint256[]
     }
 ```
 
-`stake`: allow users to perform stake operations, stake BNB into the staking pool, and receive rBNB in return.
+`stake`: allow users to perform stake operations, stake MATIC into the staking pool, and receive rMATIC in return.
 
 ```js
 function stake(uint256 _stakeAmount) external payable {
@@ -177,7 +177,7 @@ function stake(uint256 _stakeAmount) external payable {
     }
 ```
 
-`unstake`: allow users to perform unstake operations, burn rBNB, and record the corresponding amount of BNB.
+`unstake`: allow users to perform unstake operations, burn rMATIC, and record the corresponding amount of MATIC.
 
 ```js
 function unstake(uint256 _rTokenAmount) external payable {
@@ -185,7 +185,7 @@ function unstake(uint256 _rTokenAmount) external payable {
     }
 ```
 
-`withdraw`: allow users to perform withdrawal operations and withdraw unstaked BNB to their wallet.
+`withdraw`: allow users to perform withdrawal operations and withdraw unstaked MATIC to their wallet.
 
 ```js
 function withdraw() external payable {
@@ -195,13 +195,14 @@ function withdraw() external payable {
 
 ## Relay
 
-To update delegation and undelegation operations in the contract, we have developed a newly designed and simplified service called Relay. This service triggers Era updates and synchronizes unrewarded data from the BSC chain that has not yet been synced to the contract, ensuring the accuracy of exchange rates. Because the reward will only be synced to BSC when it is greater than 1 BNB.
+To update delegation and undelegation operations in the contract, we have developed a newly designed and simplified service called Relay. This service triggers Era updates, ensuring the accuracy of exchange rates. This is also a permissionless service, which means that anyone can run it to update the era.
 
-# Security Considerations
+## Security Considerations
 
-Relay is an offline service that is vulnerable to slashing or attacks. If it remains unrecoverable for an extended period, users can call the settle function in the contract to initiate delegation and undelegation operations, allowing them to withdraw their assets. Furthermore, to ensure exchange rate stability, a rateChangeLimit has been implemented to ensure that the exchange rate increases linearly.
+Relay is an offline service that is vulnerable to slashing or attacks. However, since it is a permissionless service, anyone can run it to minimize this risk.
 
 In addition, asset migration and security are important considerations. To ensure security, we will conduct audits and repeated testing, and closely monitor the migration process for any potential issues.
+
 
 # Copyright
 
