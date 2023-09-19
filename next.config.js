@@ -4,6 +4,7 @@ const { withContentlayer } = require("next-contentlayer");
 const nextConfig = {
   reactStrictMode: true,
   output: 'export',
+  trailingSlash: true,
   swcMinify: true,
   webpack: (config, { isServer }) => {
     if (!isServer) {
