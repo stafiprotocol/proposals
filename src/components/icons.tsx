@@ -1,3 +1,5 @@
+import * as React from "react"
+
 export const IpfsIcon = () =>{
   return(
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 511.99999 511.99998">

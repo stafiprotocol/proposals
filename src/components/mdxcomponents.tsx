@@ -3,13 +3,12 @@
 import * as React from 'react';
 import Link from 'next/link';
 import type { MDXComponents } from 'mdx/types'
-import Image from 'next/image';
 
 
 // define mdx components style
 export const mdxComponents: MDXComponents = {
   // Override the default <a> element to use the next/link component.
-  a: ({ href, children }) => <Link href={href as string}>{children}</Link>,
+  a: ({ href, children }) => <Link href={href as string} className='text-[#0061FE]'>{children}</Link>,
   h1: ({...props}) =>(
     <h1 className='text-3xl text-[#37352F] mt-6 mb-6 font-semibold' {...props}/>
   ),
@@ -29,7 +28,16 @@ export const mdxComponents: MDXComponents = {
     <blockquote {...props} className="w-full text-center bg-[#eaecf0] text-xl"/>
   ),
   table:({...props}) =>(
-    <table className="table-auto" {...props}/>
+    <table className="border-collapse w-full text-sm my-6 table-fixed" {...props}/>
+  ),
+  tbody:({...props}) =>(
+    <tbody className='bg-white' {...props}/>
+  ),
+  th:({...props})=>(
+    <th className='border-b font-medium p-3 pl-3 pt-0 pb-3 text-slate-400 text-left ' {...props}/>
+  ),
+  td:({...props})=>(
+    <td className='border-b border-slate-100 p-3 pl-3 text-slate-500 truncate hover:text-clip' {...props}/>
   ),
   ul:({...props}) => (
     <ul className='list-disc list-inside pl-2 mt-2 mb-4' {...props}/>

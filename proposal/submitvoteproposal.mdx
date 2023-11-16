@@ -1,0 +1,44 @@
+---
+title: 'Submit & Vote Proposals in StaFi DAO'
+description: StaFi is committed to achieving decentralization and becoming a contributor-driven DAO. A crucial step in this process is engaging the community through proposal submission and voting. This inclusive approach empowers FIS and rFIS holders to actively participate in the governance of the StaFi protocol by submitting and voting on proposals.
+date: 2023-10-30
+status: 2
+snapshotlink: https://voting.opensquare.io/space/stafi/proposal/QmRAy2gQb9kWjdq68VP5AbRsDbHvjiVditrutHBwVs1Sqk
+discusslink: https://dao.stafi.io/t/submit-vote-proposals-in-stafi-dao/122/
+---
+
+# Motivation
+
+StaFi is committed to achieving decentralization and becoming a contributor-driven DAO. A crucial step in this process is engaging the community through proposal submission and voting. This inclusive approach empowers FIS and rFIS holders to actively participate in the governance of the StaFi protocol by submitting and voting on proposals.
+
+# Specification
+
+## Submitting A Proposal
+
+- **Conception:** Proposal author Proposal authors can submit new proposals on the [StaFi forum](https://dao.stafi.io/c/proposal/5) under the “**Proposal/Finance” category** and adds the Discussion Draft tag.
+- **Request for Comments(RFC):** A period of reviewing by the community and attendant redrafting begins. The minimum duration of this period is one week.
+- **Fulfilled Feedback Period Requirements:** After the proposal has fulfilled the RFC phase, it is ready for Formal Submission.
+- **Formal Submission:** Once the proposal has successfully fulfilled the feedback requirements of the RFC phase, it moves on to Formal Submission. And the proposal is published on the [OpenSquare](https://voting.opensquare.io/space/stafi) for FIS/rFIS holders to vote on. The minimum duration of voting is one week. The type of voting is single choice.
+- **Accepted/Rejected:** The proposal is voted on. If it passes, it is officially accepted and is given the `Accepted` status. If not, the proposal is rejected.
+
+Proposals can cover various categories, including StaFi Improvement Proposals (SIPs) that propose protocol enhancements, budget proposals, grants, and more. For financial-related proposals, it is recommended to submit them under the **"Finance" category** on the forum. If unsure about the specific category, proposals can be conveniently submitted under the general **"Proposal" category**.
+
+Since FIS is the native token of the StaFi Chain built on Substrate, Snapshot compatibility is not available. Therefore, [OpenSquare](https://voting.opensquare.io/space/stafi) has been chosen as the voting tool, supporting both the StaFi Chain and Ethereum, which encompasses the majority of FIS/rFIS holders.
+
+## Off-Chain Voting Progress
+
+To initiate a vote on OpenSquare, a minimum of 10,000 FIS is required. This threshold has been set primarily for security considerations, which will be further discussed in the security section. Once initiated, both FIS and rFIS holders can participate in the voting process. Since the vote is conducted off-chain, only the verification of the token quantity held in the account is necessary. OpenSquare supports both ERC20 and the StaFi Chain native tokens.
+
+The voting duration lasts for one week, and participants can select a single choice from the available options. FIS can be obtained from both centralized exchanges (CEX) and decentralized exchanges (DEX). For more details, please refer to the [provided information](https://docs.stafi.io/fistoken/). Additionally, if you are unable to acquire 10,000 FIS (equivalent amount of rFIS) but your proposal has been approved through the Request for Comments (RFC) process, the core team will assist you in initiating the vote on OpenSquare.
+
+# Security
+
+Ensuring security in the governance process, several measures have been implemented. Firstly, a threshold of holding 10,000 FIS (equivalent amount of rFIS) is required to initiate a vote. This threshold ensures that only holders with a significant investment can initiate a vote, reducing the risk of malicious governance attacks. Additionally, a **quadratic balance-of** strategy has been implemented to mitigate the influence of large holders on the voting process.
+
+Furthermore, since our voting process is **permissionless**, it is possible for proposals to be directly submitted on OpenSquare without going through the community discussion process. While these proposals directly enter the voting phase, we consider them valid. However, to prevent misuse, we have introduced a **quorum** parameter in the voting mechanism. We have set the quorum at 40,000 FIS (equivalent amount of rFIS), meaning that a vote is only considered valid if it reaches the specified Quorum threshold.
+
+These parameters and strategies will be managed by the DAO to ensure security. Additionally, due to OpenSquare's lack of support for dynamic exchange rate configuration, the voting power of FIS and rFIS can currently only be manually configured based on the exchange rate. Moreover, OpenSquare does not support floating-point exchange rates, so rounding is currently used for compatibility in the configuration. This may result in a deviation of 0.7 in the voting power. We will rely on OpenSquare's support for dynamic exchange rate configuration to address this issue.
+
+# Future Work
+
+The reason for not introducing an on-chain mechanism is that the governance framework for DAO is currently under discussion. There is a leaning towards choosing Ethereum for governance, which would be entirely different from the current governance conducted on the StaFi Chain. The progress of this matter can be tracked on the  [forum](https://dao.stafi.io/c/proposal/5), where you can also find updates and are welcome to join the discussion.
