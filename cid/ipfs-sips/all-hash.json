@@ -17,7 +17,7 @@
   },
   {
     "name": "sip3",
-    "hash": "QmWCswxrdZidMG2gVNjkpt4GghvoJYdensHKmkTx8mSThK"
+    "hash": "QmTCYNaofE41duRCiNHrp58bN8mVcYqGFxaqf339kkodaq"
   },
   {
     "name": "sip4",
@@ -38,5 +38,13 @@
   {
     "name": "sip8",
     "hash": "QmS95saGNHNDJqFomqvB6MdrGXRERZFzfbuD4CT4Sd8cT6"
+  },
+  {
+    "name": "staketreasuryfis",
+    "hash": "QmZgUDPscBAfU7R2g1yiQhqSN9yUmXzWG73AAZrDCvCCJu"
+  },
+  {
+    "name": "submitvoteproposal",
+    "hash": "Qmd4aWJy6smATDTqXsM7cxSbmzPkhpUDDVneAwM1rEYE1W"
   }
 ]
