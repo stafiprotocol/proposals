@@ -1,0 +1,79 @@
+---
+title: 'Assessing the Current State of the DAO Community Treasury and the Potential for Staking FIS'
+description: The FIS token of StaFi is currently fully unlocked and in circulation. However, the details regarding the allocation of tokens for the community and inflation 2 have not been previously explained. This proposal aims to address the treasury situation concerning the community and inflation components. It will provide an overview of the addresses associated with these two parts and propose partial staking of the treasury, as well as introducing burning mechanisms in the future to ensure long-term sustainability.
+date: 2023-10-31
+status: 2
+snapshotlink: https://voting.opensquare.io/space/stafi/proposal/QmaUqjMacPsGnqZcUNSpbj8RKrJHkf1KaX6yrzpwzFeFT2
+discusslink: https://dao.stafi.io/t/assessing-the-current-state-of-the-dao-community-treasury-and-the-potential-for-staking-fis/123
+---
+
+# Abstract
+
+The FIS token of StaFi is currently fully unlocked and in circulation. However, the details regarding [the allocation of tokens for the community and inflation](https://docs.stafi.io/stafichain/#token-distribution) have not been previously explained. This proposal aims to address the treasury situation concerning the community and inflation components. It will provide an overview of the addresses associated with these two parts and propose partial staking of the treasury, as well as introducing burning mechanisms in the future to ensure long-term sustainability.
+
+# Motivation
+
+StaFi is actively undergoing decentralization, aiming to become a permissionless, contributor-driven DAO. In order to enhance transparency and promote long-term sustainability, we are releasing the details of the community aspect of the DAO Treasury, [includes both the Inflation Treasury and the Community Treasury allocated from Genesis Sumup](https://docs.stafi.io/stafichain/tokenomics/), and all the FIS tokens have been unlocked and are in circulation. Here is the list of the contents:
+
+| Address | FIS Amount | Available FIS Amount | rFIS Amount | Type |
+| --- | --- | --- | --- | --- |
+| [36JkR8Gzx2tAUaVzHeRQhbsfL5J14j1hrCrYo1F851FLcM4V](https://stafi.subscan.io/account/36JkR8Gzx2tAUaVzHeRQhbsfL5J14j1hrCrYo1F851FLcM4V) | 40,146 | 40,416 | 3,737,606 | Genesis(StaFi Chain) |
+| [31XQjajM9x14JvUoXE6tMqkRzf2NfGxqmk45szTwHsF7vkq7](https://stafi.subscan.io/account/31XQjajM9x14JvUoXE6tMqkRzf2NfGxqmk45szTwHsF7vkq7) | 1,686,969.923 | 1,686,969.923 | 2,417,823 | Genesis(StaFi Chain) |
+| [33UFoCxwXDJwWKKDBx6xp68X7rtBLXun5TvSxtoKmB6KwZnP](https://stafi.subscan.io/account/33UFoCxwXDJwWKKDBx6xp68X7rtBLXun5TvSxtoKmB6KwZnP) | 0 | 0 | 0 | Genesis(StaFi Chain) |
+| [3327TuapxKGaDVaj6rSyywBQWmbZkiCNHRjfs8hCUzK3eeux](https://stafi.subscan.io/account/3327TuapxKGaDVaj6rSyywBQWmbZkiCNHRjfs8hCUzK3eeux) | 6,300,000 | 6,300,000 | 0 | Genesis(StaFi Chain) |
+| [34e1uL9Y8pJnb2F13x1K3ppHJ4UF9txUYbM2CgqcdSewfsa2](https://stafi.subscan.io/account/34e1uL9Y8pJnb2F13x1K3ppHJ4UF9txUYbM2CgqcdSewfsa2) | 6,300,000 | 6,300,000 | 0 | Genesis(StaFi Chain) |
+| [31ocHCL7Dw8YJC9zeHT7UXiA4ZgjDwzWQgphRKGbSX41fcCg](https://stafi.subscan.io/account/31ocHCL7Dw8YJC9zeHT7UXiA4ZgjDwzWQgphRKGbSX41fcCg) | 6,308,683.771 | 6,308,683.771 | 0 | Genesis(StaFi Chain) |
+| [33DgUpArHKJgYMepNaqkXFEzYipuD8UYfZsXDmG8ZbHStWAw](https://stafi.subscan.io/account/33DgUpArHKJgYMepNaqkXFEzYipuD8UYfZsXDmG8ZbHStWAw) | 14,004,813.98 | 14,004,813.98 | 0 | Inflated reward(StaFi Chain) |
+| [stafi1gy5jtfmxw9nyr0p4mkfh9lakegm3jxn3sjdvea](https://www.mintscan.io/stafi/address/stafi1gy5jtfmxw9nyr0p4mkfh9lakegm3jxn3sjdvea) | 4,224,875.39 | 52,568 | 0 | StaFiHub |
+
+The community currently hold a total of 38,865,489 FIS, including 6,155,429 rFIS, which represents approximately 35% of the total supply. Within this total amount, the quantity of available FIS tokens (with no stake or delegation) is 34,435,323 FIS. 
+
+The balance in address [33UFoCxwXDJwWKKDBx6xp68X7rtBLXun5TvSxtoKmB6KwZnP](https://stafi.subscan.io/account/33UFoCxwXDJwWKKDBx6xp68X7rtBLXun5TvSxtoKmB6KwZnP) is currently 0. This portion of funds has been allocated for past marketing campaigns, including StakingDrop, and other incentive. The purpose of this address has already been explained in the previous tokenomics V1 documentation.
+
+Upon examination, it is evident that a significant portion of the FIS remains unused in the wallet balance, without being utilized by the core team or the community. In addition, [the current staking rate of the entire StaFi Chain stands at 25%](https://apps.stafi.io/#/staking), while the desired target staking rate is set at 75%. Therefore, to enhance the security of the chain, it is necessary to increase the staking rate.
+
+To address this issue and enhance the treasury's effectiveness, we propose staking the majority of the treasury FIS on the StaFi Chain and StaFi Hub.
+
+Furthermore, we will ensure transparency by providing regular updates on the status of this portion of the treasury in the monthly financial reports. 
+
+# Specification
+
+Currently, the primary purpose of FIS in the treasury is to incentivize liquidity providers (LPs) to contribute liquidity to rTokens across various DeFi protocols, incentivize community member to contribute protocols, and reward StaFi Hub validators for securing rTokens in the Cosmos ecosystem. LP incentives and community incentives are regularly disclosed in the [financial report](https://dao.stafi.io/c/finance/14), while the annual incentives for StaFi Hub validators amount to approximately [2 million FIS](https://stafi.subscan.io/account/33DgUpArHKJgYMepNaqkXFEzYipuD8UYfZsXDmG8ZbHStWAw). Based on calculations, the combined annual expenses for LP and validator incentives total around 5 million FIS, which represents approximately 13.8% of the FIS held in the community treasury.
+
+Additionally, the address([33DgUpArHKJgYMepNaqkXFEzYipuD8UYfZsXDmG8ZbHStWAw](https://stafi.subscan.io/account/33DgUpArHKJgYMepNaqkXFEzYipuD8UYfZsXDmG8ZbHStWAw)) that receives inflation rewards is not currently able to initiate staking directly. As a result, we will temporarily hold onto this address while also planning to utilize it for **future burn operations**. Additionally, the inflation rewards will be allocated towards various purposes, including incentives and marketing campaigns.
+
+The influx of a significant number of staked FIS tokens can have repercussions on both inflation and the earnings of existing stakers. Presently, the staking rate is at 25%, with an inflation rate of 5%. However, if the staking rate were to reach 75%, the inflation rate would rise to 10%.
+
+Consequently, the increased inflation would generate more additional FIS tokens, some of which might enter the secondary market and potentially impact the price of FIS. To mitigate this effect, plans are underway to introduce **a burn mechanism**, ensuring the FIS token supply remains at a reasonable level. This burn mechanism will periodically burn a certain proportion of FIS tokens, thereby helping to regulate the token supply.
+
+Considering all the factors discussed above, our plan is to stake the entire available FIS amount from the following addresses on the StaFi Chain: 
+
+- [36JkR8Gzx2tAUaVzHeRQhbsfL5J14j1hrCrYo1F851FLcM4V](https://stafi.subscan.io/account/36JkR8Gzx2tAUaVzHeRQhbsfL5J14j1hrCrYo1F851FLcM4V)
+- [31XQjajM9x14JvUoXE6tMqkRzf2NfGxqmk45szTwHsF7vkq7](https://stafi.subscan.io/account/31XQjajM9x14JvUoXE6tMqkRzf2NfGxqmk45szTwHsF7vkq7)
+- [3327TuapxKGaDVaj6rSyywBQWmbZkiCNHRjfs8hCUzK3eeux](https://stafi.subscan.io/account/3327TuapxKGaDVaj6rSyywBQWmbZkiCNHRjfs8hCUzK3eeux)
+- [34e1uL9Y8pJnb2F13x1K3ppHJ4UF9txUYbM2CgqcdSewfsa2](https://stafi.subscan.io/account/34e1uL9Y8pJnb2F13x1K3ppHJ4UF9txUYbM2CgqcdSewfsa2)
+- [31ocHCL7Dw8YJC9zeHT7UXiA4ZgjDwzWQgphRKGbSX41fcCg](https://stafi.subscan.io/account/31ocHCL7Dw8YJC9zeHT7UXiA4ZgjDwzWQgphRKGbSX41fcCg)
+
+Furthermore, the address [stafi1gy5jtfmxw9nyr0p4mkfh9lakegm3jxn3sjdvea](https://www.mintscan.io/stafi/address/stafi1gy5jtfmxw9nyr0p4mkfh9lakegm3jxn3sjdvea) will be used for staking on the StaFi Hub.
+
+For this staking round, a total of approximately 20,688,638 FIS will be staked, resulting in an increased staking rate of approximately 40%. Consequently, the inflation rate is expected to rise to around 6% from the existing 5%. This upward trend in staking rewards will lead to higher profitability for stakers.
+
+However, it's important to note that due to the increased proportion of the treasury, validators may experience a slight reduction in their earnings. This is because the treasury's share has grown, potentially impacting the overall distribution of rewards.
+
+The remaining 13 million FIS from address [33DgUpArHKJgYMepNaqkXFEzYipuD8UYfZsXDmG8ZbHStWAw](https://stafi.subscan.io/account/33DgUpArHKJgYMepNaqkXFEzYipuD8UYfZsXDmG8ZbHStWAw) will be reserved for covering daily expenses in the upcoming year and future burn activities.
+
+# Action
+
+If this proposal undergoes thorough community discussion without any objections, the core team will proceed with staking approximately 20,688,638 FIS on the StaFi Chain and StaFi Hub. The earnings generated from this staking and the expenses from the treasury will be transparently disclosed in the monthly financial report.
+
+# Security
+
+In order to enhance the security of DAO assets, we have planned to implement multi-signature (multisig) wallets and guardians. These measures have been thoroughly discussed and integrated into the [DAO governance framework](https://dao.stafi.io/t/discussion-draft-dao-governance-framework/109).
+
+# Resource
+
+- StaFi Chain Subscan: [https://stafi.subscan.io/](https://stafi.subscan.io/)
+- StaFi Hub Mintscan: [https://www.mintscan.io/stafi](https://www.mintscan.io/stafi)
+- FIS Token: [https://docs.stafi.io/fistoken/](https://docs.stafi.io/fistoken/)
+- Tokenomics V1: [https://docs.stafi.io/stafichain/tokenomics/](https://docs.stafi.io/stafichain/tokenomics/)
+- DAO Forum: [https://dao.stafi.io/](https://dao.stafi.io/)

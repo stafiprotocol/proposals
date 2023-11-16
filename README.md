@@ -13,5 +13,6 @@ StaFi Improvement Proposals (SIP) describe standards for the core protocol speci
 | [SIP-6]Proposal To Remove Redundant Bridges On The rBridge | QmcCSmQao63yuqFu4NS6o5wgRsAs4gyCfQcGfx2Fo1nozn | 
 | [SIP-7] StaFi Router and integration of SSV DVT infrastructure  | QmdESLkeYLBtxwXHwAqoWfWWmwfrR8FpJCt1vL6HdMMDQ9 | 
 | [SIP-8] StaFi LSM Integration Proposal | QmS95saGNHNDJqFomqvB6MdrGXRERZFzfbuD4CT4Sd8cT6 | 
-
+| Assessing the Current State of the DAO Community Treasury and the Potential for Staking FIS | QmZgUDPscBAfU7R2g1yiQhqSN9yUmXzWG73AAZrDCvCCJu |
+| Submit & Vote Proposals in StaFi DAO | Qmd4aWJy6smATDTqXsM7cxSbmzPkhpUDDVneAwM1rEYE1W |
 
