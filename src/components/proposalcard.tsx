@@ -55,7 +55,7 @@ const ProposalCard = (params: ProposalCard) => {
                 </div>
               </div>
             </Link>}
-            { params.snapshotlink && <Link href=''>
+            { params.snapshotlink && <Link href={`${params.snapshotlink}`} target='_blank'>
               <div className='flex items-center space-x-4 bg-[#E9EAEE]/30 p-1.5 rounded-md'>
                 <div className='rounded-full bg-[#E9EAEE] py-1.5 px-2'>
                   <div className='w-5 h-6'>
