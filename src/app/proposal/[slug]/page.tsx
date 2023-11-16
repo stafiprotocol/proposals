@@ -88,7 +88,7 @@ const ProposalPage = async({ params }: { params: { slug: string } }) => {
               </div>
             </div>
           </Link>}
-          {proposal.snapshotlink &&<Link href={proposal.snapshotlink}>
+          {proposal.snapshotlink &&<Link href={proposal.snapshotlink} target='_blank'>
             <div className="border-[1px] border-black/60 rounded-md px-2 py-1 flex items-center space-x-1 hover:border-black group">
               <div className="w-3 h-4">
                 <SnapshotIcon/>

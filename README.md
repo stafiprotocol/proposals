@@ -2,6 +2,8 @@
 
 StaFi Improvement Proposals (SIP) describe standards for the core protocol specifications, contract standards and client APIs.They are standardized documents voted upon by StaFi Governance. SIPs can be added, amended, replaced, and removed.
 
+website: https://proposals.stafi.io
+
 | Name  | IPFS Hash | 
 | ------------ | ---- |
 | Commission Fee Adjustment Proposal | Qmd4SnJvjssDScmVcJ4mX3Kg8pJLaYuNzBJnouxWkCV76K | 
