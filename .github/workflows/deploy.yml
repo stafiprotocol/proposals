@@ -34,11 +34,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          # 设置发包 npm 地址仓库
       
       - name: Install dependencies
         run: npm install
-      # 执行构建步骤
+      # build
       - name: build
         run: |
           npm run build
@@ -63,5 +62,5 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
       
-      # 让 CloudFront 更新
+      # Update CloudFront
       - run: aws cloudfront create-invalidation --distribution-id "${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }}" --paths '/*'
