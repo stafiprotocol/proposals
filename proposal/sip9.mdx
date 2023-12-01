@@ -1,0 +1,71 @@
+---
+title: '[SIP-9]Remove rDOT and rKSM from StaFiChain, migrate rSOL to the Solana'
+description: As described in StaFi Tokenimic V2 1 , continuously decoupling rTokens from appchain security is essential to scale StaFi LSD solution. rBNB and rMatic have completed the decoupling, gained security from BSC and Polygon directly, and the whole process is going well. Next step is to migrate rDOT, rKSM and rSOL. After deeply reviewing the stat of the contributions at a protocol level, I propose to remove rDOT/rKSM, while migrating rSOL to Solana only.
+date: 2023-11-08
+status: 2
+snapshotlink: https://voting.opensquare.io/space/stafi/proposal/Qma8UuSHrvwqxNQTg6DUNV4sJ2U3zBRYjTHQ2W5nCtAoEP
+discusslink: https://dao.stafi.io/t/sip-9-remove-rdot-and-rksm-from-stafichain-migrate-rsol-to-the-solana/130
+---
+
+# Abstraction
+As described in StaFi Tokenimic V2, continuously decoupling rTokens from appchain security is essential to scale StaFi LSD solution. rBNB and rMatic have completed the decoupling, gained security from BSC and Polygon directly, and the whole process is going well. Next step is to migrate rDOT, rKSM and rSOL. After deeply reviewing the stat of the contributions at a protocol level, I propose to remove rDOT/rKSM, while migrating rSOL to Solana only.
+
+With the coming launch of rLaunchpad, a product that sustains the development of rTokens in the future LSD market, StaFi protocol will extend the capability to roll on the new release of the rToken, hence, keep the StaFi Tokenomic scalable.
+
+In a nutshell, this is a proposal to migrate the remaining rTokens in the StaFi chain to the target chain while making sure the future plan can support the developing growth in the LSD industry.
+
+# Motivation
+
+While considering the migration, we think the value added from the migration, as this migration will be a heavy workload arranged to the dev team. To save the limited development resource, we have to think about the following factors, which should be reasonable to benefit the protocol:
+
+## Protocol contribution
+
+Staked TVL and gained reward are two important factors to evaluate the contribution. Those 2 factors are positively related, rewards are from a percentage of staking reward, while staking reward is proportional to its staked value, which means a big staked TVL will lead to more rewards. It is clear to check the rTokens contribution and make a decision.
+
+## Tech possibility
+
+In order to be more decentralized, decoupling needs technical support from protocol level. rToken solution, theoretically speaking, can be deployed in any PoS layer1s, while the solution has to sacrifice some meaningful specifications to some extent, such as decentralization, UIUX and security. Most of the decouplings are aiming for interoperability and scalability, hence, an EVM-based rToken in target chain is ideal. Migration should think about its relaunch and see if it can be well supported and make sure the top priorities can be guaranteed.
+
+## Future development
+
+We also have to think about its future development if we input the dev resources. Without the TVL and reward, and even there is no foresee on its growth potential, removal should be the right direction. There are trending projects in the marketing, especially in Crypto, technology is growing rapidly, always following the trends can expose StaFi to more and more communities.
+
+Taking these 3 aspects into account, I can come to a conclusion on the migration, rDOT and rKSM should be removed, rSOL should be migrated.
+
+
+| Reasonable Aspect	| rDOT	| rKSM	| rSOL |
+| --- | --- | --- | --- |
+| Staked TVL | Relatively low |	Low	| Relatively low |
+| Contribution	| Relatively low	| Low	| Relatively low |
+| Tech support |	Inaccessible |	Inaccessible |	Accessible |
+| Development	| Relatively Inactive |	Inactive |	Active |
+
+Furthermore, seeing from the the analytics 1, rKSM has $3.993K in staked and rDOT $72.129K, both contribute relatively low that can be even ignored in a day(marked at the end day of Oct). rSOL has $58.018K in staked and contribute a relatively low in a daily base as well, an average reward can be calculated, StaFi protocol collects rKSM 0.003 ksm/ day, rDOT 0.5334966225 dot/day, and rSOL 0.126804645 sol /day. However, the tech possibility is accessible and the development activities in Solana are still active. If you compare the Polkadot/Kusama, I can foresee the future development of rSOL while I can’t see the rDOT and rKSM.
+
+More importantly, there is no direct solution that rDOT and rKSM can be deployed in Polkadot or Kusama as their relay-parachain module. The EVM compatible parachain, such as Moonbean is the option, but the rToken solution will be more distorted in a decentralization manner, if rDOT deployed in Moonbean, so even someone has different scene of Polkadot and Kusama in the future, the second aspect is an obstacle for the migration.
+
+# Specification
+The strategy of migration and removal are similar to before operations, migration can follow the same route of rBNB, while removal can follow the route of rBridge.
+
+## Migrate rSOL to Solona
+Same strategy to rBNB and rMATIC, rSOL will be rebuilt, then redeployed to Solana. As the Solana is EVM compatible, there will be 2 options to deploy rSOL. The first is to deploy the Solana chain directly, the second option is to deploy in Neon, an EVM with the scalability and liquidity of Solana. The second solution is similar to rBNB and rMatic, but it depends on the growth of the projects in the Neon ecosystem, not Solana itself. I think the dev team still needs to balance the development resource and growth demands, then determine a final solution.
+
+Once decided, the rSOL will enter into a development stage, the bridge migration will follow this direction as well. A detailed plan will be released if the proposal gets passed.
+
+## Remove rDOT and rKSM
+
+An unstaked period is set to enable the removal from the users side. Considering the unstake period of rDOT is about 28-day long, the unstaked period will last for months.
+
+Beside that, we will follow the rule set in the migration of rBridge, there will a deadline for unstaking rDOT and rKSM, the frontend service will be removed firstly and then the back end, there will be no service for the non-unstaked user to redeem their staked DOT and KSM after the deadline.
+
+## Risk
+
+There is no foreseeable risk seen in this proposal. The migration of rSOL is a relaunch, so a new audit is needed.
+
+# Next Step
+
+This is a proposal to collect feedback from the community, any ideas are welcome. The StaFi Governance is building alongside with the proposing, there is no certainty which process will be launched beforehand, we will wait and see if this proposal can be voted from the governance.
+
+## rLaunchpad
+
+rLaunchpad needs to be introduced to develop the new rToken in a scalable way, more detailed plans should be planned and get approved by the community.
