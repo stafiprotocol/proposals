@@ -1,5 +1,9 @@
 [
   {
+    "name": "boostingdvt",
+    "hash": "QmcEB67Rjgk4Vvb3NVXrPAFQSNTgvMcFyynE4Wi1sveWVf"
+  },
+  {
     "name": "commissionfee",
     "hash": "Qmd4SnJvjssDScmVcJ4mX3Kg8pJLaYuNzBJnouxWkCV76K"
   },
@@ -38,6 +42,10 @@
   {
     "name": "sip8",
     "hash": "QmS95saGNHNDJqFomqvB6MdrGXRERZFzfbuD4CT4Sd8cT6"
+  },
+  {
+    "name": "sip9",
+    "hash": "Qmf77YowrCV9e4SLBskgfAc4ZLJVEEZwgWHYmWyURDuUgz"
   },
   {
     "name": "staketreasuryfis",
