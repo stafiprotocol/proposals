@@ -6,6 +6,7 @@ import Status from "@/components/status"
 import { IpfsIcon, SnapshotIcon, LinkIcon } from "@/components/icons"
 import jsonDataList from '../../../../cid/ipfs-sips/all-hash.json';
 import GetMDXComponent from "@/components/getmdxcomponent"
+import Footer from "@/components/footer"
 
 
 export const generateStaticParams = async () => allProposals.map((proposal) => (
@@ -57,7 +58,7 @@ const ProposalPage = async({ params }: { params: { slug: string } }) => {
   return (
     <div>
       <Header/>
-      <div className="mt-32 max-w-3xl mx-auto mb-32">
+      <div className="mt-32 max-w-4xl mx-auto mb-32">
         <div className="mt-10 w-fit">
           <Status status={proposal.status}/>
         </div>

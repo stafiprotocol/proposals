@@ -10,16 +10,16 @@ export const mdxComponents: MDXComponents = {
   // Override the default <a> element to use the next/link component.
   a: ({ href, children }) => <Link href={href as string} className='text-[#0061FE]'>{children}</Link>,
   h1: ({...props}) =>(
-    <h1 className='text-3xl text-[#37352F] mt-6 mb-6 font-semibold' {...props}/>
+    <h1 className='text-3xl text-[#1E1919] mt-6 mb-6 font-semibold' {...props}/>
   ),
   h2:({...props}) =>(
-    <h2 className='text-2xl text-[#37352F] mt-6 mb-6 font-semibold' {...props}/>
+    <h2 className='text-2xl text-[#1E1919] mt-6 mb-6 font-semibold' {...props}/>
   ),
   h3:({...props}) =>(
     <h3 className='text-xl text-black mt-10 mb-4 font-semibold' {...props}/>
   ),
   p:({...props}) =>(
-    <p className='text-base text-[#37352F] leading-normal mt-2 mb-4' {...props}/>
+    <p className='text-base text-[#1E1919] mt-2 mb-4 leading-relaxed tracking-wide' {...props}/>
   ),
   img:({ ...props }) =>(
     <img { ...props } className='w-full mb-6'/>

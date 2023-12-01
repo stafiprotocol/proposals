@@ -20,7 +20,7 @@ const ProposalCard = (params: ProposalCard) => {
   const hashlink = matchedItem ? matchedItem.hash : '';
 
     return ( 
-      <div className='max-w-3xl mx-auto'>
+      <div className='max-w-4xl mx-auto'>
         <div className='block p-6 bg-white rounded-xl'>
           <div className='mb-6 flex justify-center items-center space-x-2'>
             <Status status={params.status}/>
