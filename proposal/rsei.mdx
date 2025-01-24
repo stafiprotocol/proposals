@@ -1,0 +1,42 @@
+---
+title: 'Launching rSEI and Boosting Adoption'
+description: The EVM Network has become one of the most popular and influential blockchain networks. However, using the current approach to build LST on these chains would result in high costs and a poor user experience for users, as well as limited scalability for StaFi, requiring significant development effort.
+date: 2024-05-15
+status: 2
+snapshotlink: https://voting.opensquare.io/space/stafi/proposal/QmNUsX7nxjd4Udof5dW7c1jeRWeo4fBKFeHmSvNyCFSSzo
+discusslink: https://dao.stafi.io/t/launching-rsei-and-boosting-adoption/174
+---
+# Motivation
+
+After months of testing, rSEI is ready for mainnet deployment, coinciding with the upcoming SEI EVM mainnet launch. The core team recommends preparing rSEI for release and applying for FIS from the Treasury for incentives. As the winner of rLaunchpad season 1 and developed by LSaaS stack, rSEI’s performance is crucial for LSaaS adoption.
+
+# Specification
+
+## Overview
+
+Pre-mainnet launch, three incentivization strategies will be implemented:
+
+- rSEI mint drop to encourage SEI staking and rapidly increase TVL.
+- Initial liquidity provision for the rSEI/SEI pair.
+- Incentives for rSEI/SEI pair LP to deepen the liquidity pool.
+- Unstaking functionality will be unavailable initially, unlocking after one or two quarters for security and stability reasons.
+
+## rSEI Mint Drop
+
+The mint drop serves as a primary incentive for users to stake SEI on StaFi, with rewards granted upon staking. Drawing from data of previous ETH mint drops, it’s estimated that acquiring 1 ETH required approximately 100 FIS incentives. Applying this ratio to SEI, 100 FIS could yield around 5,800 SEI. Consequently, approximately 10,000 FIS could potentially contribute to a TVL of about 0.3M, while 33,000 FIS could lead to roughly 1M TVL. Reward distribution will follow a linear timeline, with a set duration of 40 days, meaning that staking rewards will be fully obtained after this period. Regarding reward allocation, incentives can be provided either in FIS or SEI. Opting for SEI rewards can enhance visibility within the SEI community and eliminate the need to establish additional liquidity. However, this approach necessitates additional development effort.
+
+## Incentive rSEI Liquidity
+
+The liquidity for the rSEI/SEI pair requires contributions from two sources: the core team and LP providers. For the initial liquidity, the core team anticipates providing $50,000 - $100,000, which will be acquired through FIS conversion, requiring approximately 150,000 FIS.
+
+Regarding LP liquidity incentives, there is limited available data for reference. Based on previous incentive amounts, approximately 10,000 FIS is expected to be allocated for LP incentives. However, LP providers also have the option to receive rewards in SEI. In terms of implementation, a vesting mechanism can be introduced for LP rewards. For example, LP incentives can be received as oFIS or oSEI, requiring vesting before conversion to FIS or SEI. Vesting periods would be linear, with options for full redeem after 8 or 16 weeks. If participants exit prematurely, rewards would be discounted based on the number of vested weeks. However, this approach would entail additional development costs.
+
+Furthermore, we will collaborate with the SEI ecosystem’s DEX to apply for additional LP incentives, which will not be funded from the treasury.
+
+# Summary
+In summary, we will apply for approximately 193,000 FIS for rSEI incentives. The community can vote on the following execution options:
+
+- Allocate 33,000 FIS for mint drop, 160,000 FIS for initial liquidity, and 10,000 FIS for LP incentives. All rewards will be in FIS. Mint drop rewards will be linearly released over 40 days, while LP incentives will be distributed directly.
+- Allocate 33,000 FIS for the mint drop, exchange 155,000 FIS for SEI, and provide LP incentive rewards in SEI. Mint drop rewards will be linearly released over 40 days, and LP incentives will be distributed directly.
+- Allocate 33,000 FIS for mint drop, 150,000 FIS for initial liquidity, and 10,000 FIS for LP incentives. Mint drop rewards will be in FIS, linearly released over 40 days, while LP incentives will be in SEI with an 8-week vesting period.
+- Allocate 33,000 FIS for mint drop, 150,000 FIS for initial liquidity, and 10,000 FIS for LP incentives. Mint drop rewards will be in FIS, linearly released over 40 days, while LP incentives will be in SEI with a 16-week vesting period.

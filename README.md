@@ -17,4 +17,7 @@ website: https://proposals.stafi.io
 | [SIP-8] StaFi LSM Integration Proposal | QmS95saGNHNDJqFomqvB6MdrGXRERZFzfbuD4CT4Sd8cT6 | 
 | Assessing the Current State of the DAO Community Treasury and the Potential for Staking FIS | QmZgUDPscBAfU7R2g1yiQhqSN9yUmXzWG73AAZrDCvCCJu |
 | Submit & Vote Proposals in StaFi DAO | Qmd4aWJy6smATDTqXsM7cxSbmzPkhpUDDVneAwM1rEYE1W |
+|[SIP-9] Remove rDOT and rKSM from StaFiChain, migrate rSOL to the Solana| Qmf77YowrCV9e4SLBskgfAc4ZLJVEEZwgWHYmWyURDuUgz |
+|[SIP-10] rLaunchpad Program| QmPQ7KAd93AD1HUM6nupeRxxaBN3k8SFGF1p95p7B9Ef5d |
+
 
