@@ -19,5 +19,7 @@ website: https://proposals.stafi.io
 | Submit & Vote Proposals in StaFi DAO | Qmd4aWJy6smATDTqXsM7cxSbmzPkhpUDDVneAwM1rEYE1W |
 |[SIP-9] Remove rDOT and rKSM from StaFiChain, migrate rSOL to the Solana| Qmf77YowrCV9e4SLBskgfAc4ZLJVEEZwgWHYmWyURDuUgz |
 |[SIP-10] rLaunchpad Program| QmPQ7KAd93AD1HUM6nupeRxxaBN3k8SFGF1p95p7B9Ef5d |
-
-
+|[SIP-11] FIS Burn Proposal | QmeMuasgK9pSCvgp56qMe8DFBFuQaNhBntznTpftqRcBjY |
+|[SIP-12] Liquid Staking Modularity APP Store| QmcwyY3AfmLvdWMGaoSvTn9Jeqi5g3zvbXJQ1Ni4LfdHZZ |
+|[SIP-13] StaFi LSaaS Ecosystem and Community Incentive Program | QmYWcqG6nsiD4VdKP6YwtNzprP8ThsKhDWEVYbHzzJdxPh |
+|[SIP-14] Decrease the FIS inflation |  |
